@@ -4,6 +4,15 @@ function normalizeCode(value) {
     .replace(/\s+/g, "");
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function acceptedBlankAnswers(blank) {
   return [blank.answer, ...(blank.acceptedAnswers || [])].map(normalizeCode);
 }
@@ -72,6 +81,7 @@ function gradeParsonsExercise(parsonsExercise, submittedOrder) {
 }
 
 const lessonCoreApi = {
+  escapeHtml,
   normalizeCode,
   acceptedBlankAnswers,
   gradeBlankExercise,

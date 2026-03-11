@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const unlocked = progress.passedStages.includes("blank");
     parsonsList.innerHTML = parsonsOrder
       .map((lineIndex, index) => {
-        const line = lesson.parsonsExercise.lines[lineIndex];
+        const line = lessonCore.escapeHtml(lesson.parsonsExercise.lines[lineIndex]);
         const disableUp = !unlocked || index === 0;
         const disableDown = !unlocked || index === parsonsOrder.length - 1;
 

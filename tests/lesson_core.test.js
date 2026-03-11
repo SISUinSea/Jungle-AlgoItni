@@ -2,10 +2,15 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 const {
+  escapeHtml,
   normalizeCode,
   gradeBlankExercise,
   gradeParsonsExercise,
 } = require("../static/js/lesson_core.js");
+
+test("escapeHtml safely escapes code-like strings", () => {
+  assert.equal(escapeHtml("if nums[mid] < target:"), "if nums[mid] &lt; target:");
+});
 
 test("normalizeCode removes whitespace differences", () => {
   assert.equal(normalizeCode(" left = mid + 1 "), "left=mid+1");
