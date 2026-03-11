@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "python-basics",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "python-basics-demo-problem",
+  "title": "평균 이상 학생 명단 만들기",
+  "description": "학생 이름과 점수가 담긴 목록이 주어질 때 평균 점수와 평균 이상 학생 이름 목록을 구한다.",
+  "inputFormat": "학생 정보를 담은 딕셔너리 리스트가 함수 인자로 주어진다.",
+  "outputFormat": "평균 점수와 평균 이상 학생 이름 리스트를 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "학생이 1명인 경우",
+    "모든 학생 점수가 같은 경우",
+    "소수 평균이 나오는 경우"
+  ]
+}

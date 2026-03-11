@@ -1,0 +1,78 @@
+{
+  "algorithmSlug": "dfs",
+  "title": "재귀 기반 DFS 방문 순서 만들기",
+  "objective": "현재 방문 처리와 다음 이웃으로 내려가는 재귀 호출 순서를 안정적으로 유지한다.",
+  "codeLanguage": "python",
+  "inputExample": "graph = {0: [1, 2], 1: [0, 2], 2: [0, 1, 3], 3: [2]}\nstart = 0",
+  "outputExample": "[0, 1, 2, 3]",
+  "representativeCode": "def dfs(graph, start, visited=None):\n    if visited is None:\n        visited = []\n\n    visited.append(start)\n\n    for neighbor in graph[start]:\n        if neighbor not in visited:\n            dfs(graph, neighbor, visited)\n\n    return visited",
+  "traceSteps": [
+    {
+      "label": "방문 리스트 준비",
+      "explanation": "첫 호출에서는 visited를 새 리스트로 만들고 이후 호출과 공유한다."
+    },
+    {
+      "label": "현재 정점 방문",
+      "explanation": "현재 정점을 visited에 추가해 중복 방문을 막는다."
+    },
+    {
+      "label": "깊게 내려가기",
+      "explanation": "아직 방문하지 않은 이웃을 만나면 그 이웃으로 재귀 호출한다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "DFS는 현재 정점을 먼저 기록한 뒤 아직 방문하지 않은 이웃으로 내려가야 한다.",
+    "template": "__BLANK_b1__\n    visited = []\n\n__BLANK_b2__\n\nfor neighbor in graph[start]:\n    if neighbor not in visited:\n        __BLANK_b3__\n\nreturn visited",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "if visited is None:",
+        "acceptedAnswers": [
+          "ifvisitedisNone:"
+        ],
+        "hint": "첫 호출에서만 방문 리스트를 만든다."
+      },
+      {
+        "id": "b2",
+        "answer": "visited.append(start)",
+        "acceptedAnswers": [],
+        "hint": "현재 정점을 방문 처리한다."
+      },
+      {
+        "id": "b3",
+        "answer": "dfs(graph, neighbor, visited)",
+        "acceptedAnswers": [
+          "dfs(graph,neighbor,visited)"
+        ],
+        "hint": "방문하지 않은 이웃으로 재귀 호출한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "초기화 -> 현재 방문 -> 재귀 호출 순서를 복원한다.",
+    "lines": [
+      "    if visited is None:",
+      "        visited = []",
+      "    visited.append(start)",
+      "    for neighbor in graph[start]:",
+      "        if neighbor not in visited:",
+      "            dfs(graph, neighbor, visited)",
+      "    return visited"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "재귀 호출 전에 현재 정점을 visited에 넣지 않는 실수",
+    "whyWrong": "사이클이 있는 그래프에서 같은 정점으로 계속 되돌아와 무한 재귀가 발생할 수 있다."
+  },
+  "bridgeSummary": "실전 DFS 문제에서는 재귀 함수가 '현재 정점에서 할 일'과 '다음 정점으로 내려갈 조건' 두 가지만 갖고 있는지 먼저 확인하면 된다."
+}

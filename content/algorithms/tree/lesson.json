@@ -1,0 +1,76 @@
+{
+  "algorithmSlug": "tree",
+  "title": "전위·중위·후위 순회 순서 익히기",
+  "objective": "재귀 순회에서 방문 순서만 바뀌고 구조는 같다는 점을 코드로 확인한다.",
+  "codeLanguage": "python",
+  "inputExample": "루트 1, 왼쪽 자식 2, 오른쪽 자식 3, 2의 자식 4와 5",
+  "outputExample": "전위: [1, 2, 4, 5, 3]\n중위: [4, 2, 5, 1, 3]\n후위: [4, 5, 2, 3, 1]",
+  "representativeCode": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\n\ndef preorder(root):\n    if root is None:\n        return []\n\n    result = [root.value]\n    result.extend(preorder(root.left))\n    result.extend(preorder(root.right))\n    return result\n\n\ndef inorder(root):\n    if root is None:\n        return []\n\n    result = inorder(root.left)\n    result.append(root.value)\n    result.extend(inorder(root.right))\n    return result\n\n\ndef postorder(root):\n    if root is None:\n        return []\n\n    result = postorder(root.left)\n    result.extend(postorder(root.right))\n    result.append(root.value)\n    return result",
+  "traceSteps": [
+    {
+      "label": "빈 노드 처리",
+      "explanation": "현재 노드가 없으면 더 내려가지 않고 빈 리스트를 반환한다."
+    },
+    {
+      "label": "방문 순서 선택",
+      "explanation": "전위, 중위, 후위 중 어떤 시점에 루트 값을 넣을지 정한다."
+    },
+    {
+      "label": "서브트리 결합",
+      "explanation": "왼쪽과 오른쪽 서브트리 순회 결과를 방문 순서에 맞춰 이어 붙인다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "트리 순회는 방문 순서가 한 줄만 바뀌어도 결과가 달라진다.",
+    "template": "__BLANK_b1__\n    return []\n\n__BLANK_b2__\nresult.extend(preorder(root.left))\n__BLANK_b3__\nreturn result",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "if root is None:",
+        "acceptedAnswers": [
+          "ifrootisNone:"
+        ],
+        "hint": "재귀를 멈추는 빈 노드 조건이다."
+      },
+      {
+        "id": "b2",
+        "answer": "result = [root.value]",
+        "acceptedAnswers": [
+          "result=[root.value]"
+        ],
+        "hint": "전위 순회에서는 루트 값을 먼저 넣는다."
+      },
+      {
+        "id": "b3",
+        "answer": "result.extend(preorder(root.right))",
+        "acceptedAnswers": [],
+        "hint": "오른쪽 서브트리 결과를 마지막에 붙인다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "전위 순회 기준으로 빈 노드 처리 -> 루트 방문 -> 왼쪽 -> 오른쪽 순서를 복원한다.",
+    "lines": [
+      "    if root is None:",
+      "        return []",
+      "    result = [root.value]",
+      "    result.extend(preorder(root.left))",
+      "    result.extend(preorder(root.right))",
+      "    return result"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "전위, 중위, 후위의 차이를 재귀 호출 순서로 바꾸는 실수",
+    "whyWrong": "순회의 차이는 호출 순서가 아니라 루트 값을 결과에 넣는 시점에서 결정된다."
+  },
+  "bridgeSummary": "트리 실전 문제에서는 각 노드를 언제 처리할지 먼저 정하고, 그 다음에 같은 재귀 뼈대를 재사용하면 된다."
+}

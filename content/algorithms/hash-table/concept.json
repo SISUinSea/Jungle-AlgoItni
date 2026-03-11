@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "hash-table",
+    "title": "해시 테이블",
+    "aliases": [
+      "hash table",
+      "dictionary"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "hash-table",
+      "dict",
+      "lookup"
+    ],
+    "summary": "키로 값을 빠르게 찾는 딕셔너리 기반 접근 패턴을 성적 관리 예제로 익히는 단원"
+  },
+  "overview": "해시 테이블 단원에서는 이름 같은 키로 값을 즉시 조회하고, 전체 값 집합에서 요약 통계를 구하는 흐름을 익힌다.",
+  "coreIdea": "점수 딕셔너리의 values로 평균을 계산하고, key=scores.get 패턴으로 최고 점수 학생을 찾는다.",
+  "complexity": {
+    "time": "O(n) / O(1)",
+    "space": "O(1)"
+  },
+  "commonMistake": {
+    "title": "학생 이름이 아닌 점수 배열만 보고 최고점 학생 이름을 잃어버리는 실수",
+    "whyWrong": "해시 테이블의 장점은 키와 값을 같이 다루는 데 있으므로, 값만 분리하면 대응 관계를 다시 찾아야 한다."
+  },
+  "visualNotes": [
+    "학생 이름 키와 점수 값이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 학생 이름 키와 점수 값을 갱신하는 시점을 강조한다."
+  ]
+}

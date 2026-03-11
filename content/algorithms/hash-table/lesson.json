@@ -1,0 +1,74 @@
+{
+  "algorithmSlug": "hash-table",
+  "title": "딕셔너리 기반 성적 관리 구현하기",
+  "objective": "집계 연산과 단일 키 조회를 해시 테이블 연산으로 분리해 구현한다.",
+  "codeLanguage": "python",
+  "inputExample": "students = {\"Alice\": 85, \"Bob\": 92, \"Charlie\": 78, \"David\": 95}",
+  "outputExample": "평균 점수: 87.5\n최고 점수: David (95점)",
+  "representativeCode": "def manage_grades(students):\n    average = sum(students.values()) / len(students)\n    top_student = max(students, key=students.get)\n    top_score = students[top_student]\n    return average, top_student, top_score\n\n\ndef find_student_score(students, name):\n    return students.get(name)",
+  "traceSteps": [
+    {
+      "label": "값 집계",
+      "explanation": "딕셔너리 values를 모아 평균 점수를 계산한다."
+    },
+    {
+      "label": "최대값 조회",
+      "explanation": "max와 students.get을 조합해 최고 점수 학생 이름을 찾는다."
+    },
+    {
+      "label": "단일 키 조회",
+      "explanation": "특정 학생 점수는 get으로 바로 찾고 없으면 None을 돌려준다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "딕셔너리 문제는 전체 집계와 단일 키 조회를 나눠 생각하면 단순해진다.",
+    "template": "__BLANK_b1__\n__BLANK_b2__\n__BLANK_b3__\nreturn average, top_student, top_score",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "average = sum(students.values()) / len(students)",
+        "acceptedAnswers": [
+          "average=sum(students.values())/len(students)"
+        ],
+        "hint": "모든 점수의 평균을 계산한다."
+      },
+      {
+        "id": "b2",
+        "answer": "top_student = max(students, key=students.get)",
+        "acceptedAnswers": [
+          "top_student=max(students,key=students.get)"
+        ],
+        "hint": "점수가 가장 높은 학생 이름을 찾는다."
+      },
+      {
+        "id": "b3",
+        "answer": "top_score = students[top_student]",
+        "acceptedAnswers": [
+          "top_score=students[top_student]"
+        ],
+        "hint": "찾은 학생의 점수를 꺼낸다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "평균 계산 -> 최고점 학생 찾기 -> 점수 조회 순서를 복원한다.",
+    "lines": [
+      "    average = sum(students.values()) / len(students)",
+      "    top_student = max(students, key=students.get)",
+      "    top_score = students[top_student]",
+      "    return average, top_student, top_score"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "학생 이름이 아닌 점수 배열만 보고 최고점 학생 이름을 잃어버리는 실수",
+    "whyWrong": "해시 테이블의 장점은 키와 값을 같이 다루는 데 있으므로, 값만 분리하면 대응 관계를 다시 찾아야 한다."
+  },
+  "bridgeSummary": "실전 해시 문제에서도 전체 통계와 빠른 조회를 분리해 생각하면, 어떤 연산을 딕셔너리에 맡겨야 할지 명확해진다."
+}

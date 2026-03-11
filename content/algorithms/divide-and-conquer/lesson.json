@@ -1,0 +1,78 @@
+{
+  "algorithmSlug": "divide-and-conquer",
+  "title": "배열 최댓값을 절반씩 나눠 찾기",
+  "objective": "base case로 멈추고, 좌우 절반 해를 다시 합치는 분할정복 틀을 익힌다.",
+  "codeLanguage": "python",
+  "inputExample": "arr = [3, 5, 1, 8, 2, 9, 4]",
+  "outputExample": "9",
+  "representativeCode": "def find_max_divide_conquer(arr, left, right):\n    if left == right:\n        return arr[left]\n\n    mid = (left + right) // 2\n    left_max = find_max_divide_conquer(arr, left, mid)\n    right_max = find_max_divide_conquer(arr, mid + 1, right)\n    return max(left_max, right_max)",
+  "traceSteps": [
+    {
+      "label": "기저 구간 확인",
+      "explanation": "구간에 원소가 하나만 남으면 그 값이 곧 최댓값이다."
+    },
+    {
+      "label": "구간 분할",
+      "explanation": "중간 인덱스를 계산해 왼쪽 절반과 오른쪽 절반으로 나눈다."
+    },
+    {
+      "label": "결과 결합",
+      "explanation": "각 절반의 최댓값을 비교해 더 큰 값을 반환한다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "분할정복은 언제 멈추고, 어디서 둘로 나누는지가 핵심이다.",
+    "template": "__BLANK_b1__\n    return arr[left]\n\n__BLANK_b2__\nleft_max = find_max_divide_conquer(arr, left, mid)\nright_max = find_max_divide_conquer(arr, mid + 1, right)\n__BLANK_b3__",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "if left == right:",
+        "acceptedAnswers": [
+          "ifleft==right:"
+        ],
+        "hint": "원소가 하나 남은 구간인지 확인한다."
+      },
+      {
+        "id": "b2",
+        "answer": "mid = (left + right) // 2",
+        "acceptedAnswers": [
+          "mid=(left+right)//2"
+        ],
+        "hint": "구간을 둘로 나누는 기준점을 만든다."
+      },
+      {
+        "id": "b3",
+        "answer": "return max(left_max, right_max)",
+        "acceptedAnswers": [
+          "returnmax(left_max,right_max)"
+        ],
+        "hint": "부분 문제의 답을 합쳐 전체 답을 만든다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "base case -> 분할 -> 결합 순서를 그대로 복원한다.",
+    "lines": [
+      "    if left == right:",
+      "        return arr[left]",
+      "    mid = (left + right) // 2",
+      "    left_max = find_max_divide_conquer(arr, left, mid)",
+      "    right_max = find_max_divide_conquer(arr, mid + 1, right)",
+      "    return max(left_max, right_max)"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "mid를 기준으로 같은 구간을 다시 호출하는 실수",
+    "whyWrong": "분할 범위가 줄지 않으면 재귀가 끝나지 않거나 일부 구간을 중복 계산한다."
+  },
+  "bridgeSummary": "분할정복 문제에서는 '어떻게 나눌지'와 '부분 해를 어떤 연산으로 합칠지'를 먼저 적으면 구현이 깔끔해진다."
+}

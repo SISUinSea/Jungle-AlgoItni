@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "greedy",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "greedy-demo-problem",
+  "title": "회의실 최대 배정",
+  "description": "하나의 회의실에 겹치지 않게 최대한 많은 회의를 배정한다.",
+  "inputFormat": "(시작 시간, 종료 시간) 튜플 리스트가 함수 인자로 주어진다.",
+  "outputFormat": "배정된 회의 개수와 선택된 회의 리스트를 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "회의가 없는 경우",
+    "끝나는 시간이 같은 회의가 있는 경우",
+    "서로 겹치지 않는 회의만 있는 경우"
+  ]
+}

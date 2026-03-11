@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "slug": "divide-and-conquer",
+    "title": "분할정복",
+    "aliases": [
+      "divide and conquer"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "divide-and-conquer",
+      "recursion",
+      "array"
+    ],
+    "summary": "문제를 둘로 나눈 뒤 각 부분의 답을 구하고 다시 합쳐 전체 답을 만드는 기본 분할정복 패턴"
+  },
+  "overview": "분할정복 단원에서는 전체 문제를 좌우 절반으로 쪼갠 다음, 각 부분 문제의 답을 다시 합쳐 전체 답을 만드는 구조를 익힌다.",
+  "coreIdea": "배열 구간을 절반으로 나눠 왼쪽 최댓값과 오른쪽 최댓값을 재귀로 구하고 마지막에 max로 합친다.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(log n)"
+  },
+  "commonMistake": {
+    "title": "mid를 기준으로 같은 구간을 다시 호출하는 실수",
+    "whyWrong": "분할 범위가 줄지 않으면 재귀가 끝나지 않거나 일부 구간을 중복 계산한다."
+  },
+  "visualNotes": [
+    "left, mid, right 구간이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 left, mid, right 구간을 갱신하는 시점을 강조한다."
+  ]
+}

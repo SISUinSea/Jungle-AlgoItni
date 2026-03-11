@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "complexity",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "complexity-demo-problem",
+  "title": "배열 중복 원소 찾기 방식 비교",
+  "description": "배열에서 중복된 원소를 찾아야 할 때 brute force, sorting, hash 방식이 각각 어떻게 동작하는지 비교한다.",
+  "inputFormat": "정수 배열이 함수 인자로 주어진다.",
+  "outputFormat": "중복된 원소 리스트를 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "중복이 전혀 없는 배열",
+    "같은 값이 세 번 이상 나오는 배열",
+    "빈 배열"
+  ]
+}

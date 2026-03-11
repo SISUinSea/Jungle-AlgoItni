@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "backtracking",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "backtracking-demo-problem",
+  "title": "1부터 n까지의 조합 생성",
+  "description": "1부터 n까지 숫자 중 k개를 골라 만들 수 있는 모든 조합을 생성한다.",
+  "inputFormat": "전체 숫자 개수 n과 선택 개수 k가 함수 인자로 주어진다.",
+  "outputFormat": "모든 조합을 리스트의 리스트 형태로 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "k = 1",
+    "k = n",
+    "n이 작고 k가 큰 경우"
+  ]
+}

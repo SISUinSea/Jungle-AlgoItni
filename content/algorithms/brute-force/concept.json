@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "brute-force",
+    "title": "완전탐색",
+    "aliases": [
+      "brute force",
+      "two sum pairs"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "brute-force",
+      "array",
+      "double-loop"
+    ],
+    "summary": "가능한 모든 경우를 빠짐없이 확인해 조건을 만족하는 해를 찾는 가장 직접적인 탐색 방식"
+  },
+  "overview": "완전탐색 단원에서는 최적화보다 먼저 모든 경우를 빠짐없이 점검하는 기준 구현을 만드는 법을 익힌다.",
+  "coreIdea": "i보다 뒤에 있는 j만 확인하는 이중 반복문으로 모든 인덱스 쌍을 한 번씩만 점검한다.",
+  "complexity": {
+    "time": "O(n^2)",
+    "space": "O(k)"
+  },
+  "commonMistake": {
+    "title": "j를 0부터 다시 시작해 같은 쌍을 두 번 보는 실수",
+    "whyWrong": "완전탐색이라도 중복 기준을 정해야 (0,1)과 (1,0)을 둘 다 세지 않는다."
+  },
+  "visualNotes": [
+    "인덱스 쌍 (i, j)이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 인덱스 쌍 (i, j)을 갱신하는 시점을 강조한다."
+  ]
+}

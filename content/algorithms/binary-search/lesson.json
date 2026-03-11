@@ -1,68 +1,97 @@
 {
   "algorithmSlug": "binary-search",
   "title": "정렬 배열에서 target 위치 찾기",
-  "objective": "대표 파이썬 구현 1개를 기준으로 mid 계산, 비교, 범위 축소 순서를 고정한다.",
+  "objective": "left/right 경계 설정부터 mid 계산, 값 비교, 범위 축소까지의 순서를 흔들리지 않게 유지한다.",
   "codeLanguage": "python",
-  "inputExample": "nums = [1, 3, 5, 7, 9]\\ntarget = 7",
+  "inputExample": "arr = [1, 3, 5, 7, 9, 11, 13]\ntarget = 7",
   "outputExample": "3",
-  "representativeCode": "def binary_search(nums, target):\\n    left, right = 0, len(nums) - 1\\n\\n    while left <= right:\\n        mid = (left + right) // 2\\n\\n        if nums[mid] == target:\\n            return mid\\n        if nums[mid] < target:\\n            left = mid + 1\\n        else:\\n            right = mid - 1\\n\\n    return -1",
+  "representativeCode": "def binary_search(arr, target):\n    left = 0\n    right = len(arr) - 1\n\n    while left <= right:\n        mid = (left + right) // 2\n\n        if arr[mid] == target:\n            return mid\n        if arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n\n    return -1",
   "traceSteps": [
     {
-      "label": "초기 범위 설정",
-      "explanation": "left는 0, right는 마지막 인덱스로 두고 탐색 가능한 전체 구간을 만든다."
+      "label": "범위 초기화",
+      "explanation": "left는 0, right는 마지막 인덱스로 두고 전체 구간을 탐색 범위로 잡는다."
     },
     {
-      "label": "mid 계산",
-      "explanation": "left와 right의 중간 지점을 계산해 이번 비교 기준을 정한다."
+      "label": "반복 조건 확인",
+      "explanation": "left <= right 인 동안만 아직 확인하지 않은 후보 구간이 남아 있다."
     },
     {
-      "label": "범위 축소",
-      "explanation": "nums[mid]와 target 비교 결과에 따라 왼쪽 절반 또는 오른쪽 절반만 남긴다."
+      "label": "mid 비교",
+      "explanation": "가운데 위치 mid를 계산하고 arr[mid]와 target을 먼저 비교한다."
+    },
+    {
+      "label": "절반 제거",
+      "explanation": "arr[mid] < target 이면 왼쪽 절반을 버리고, 아니면 오른쪽 절반을 버린다."
     }
   ],
   "blankExercise": {
-    "prompt": "핵심 줄을 정확히 회상해야 통과할 수 있는 단계다.",
-    "template": "left, right = 0, len(nums) - 1\\nwhile left <= right:\\n    __BLANK_b1__\\n\\n    if nums[mid] == target:\\n        return mid\\n    if nums[mid] < target:\\n        __BLANK_b2__\\n    else:\\n        __BLANK_b3__",
+    "prompt": "mid 계산과 경계 이동 3줄을 정확히 회상해야 반례를 피할 수 있다.",
+    "template": "left = 0\nright = len(arr) - 1\n\nwhile left <= right:\n    __BLANK_b1__\n\n    if arr[mid] == target:\n        return mid\n    if arr[mid] < target:\n        __BLANK_b2__\n    else:\n        __BLANK_b3__\n\nreturn -1",
     "blanks": [
       {
         "id": "b1",
         "answer": "mid = (left + right) // 2",
-        "acceptedAnswers": ["mid=(left+right)//2"],
-        "hint": "중간 인덱스를 계산하는 줄이다."
+        "acceptedAnswers": [
+          "mid=(left+right)//2"
+        ],
+        "hint": "현재 탐색 범위의 가운데 인덱스를 만든다."
       },
       {
         "id": "b2",
         "answer": "left = mid + 1",
-        "acceptedAnswers": ["left=mid+1"],
-        "hint": "target이 더 오른쪽에 있을 때 범위를 줄이는 줄이다."
+        "acceptedAnswers": [
+          "left=mid+1"
+        ],
+        "hint": "target이 더 오른쪽에 있을 때 왼쪽 경계를 움직인다."
       },
       {
         "id": "b3",
         "answer": "right = mid - 1",
-        "acceptedAnswers": ["right=mid-1"],
-        "hint": "target이 더 왼쪽에 있을 때 범위를 줄이는 줄이다."
+        "acceptedAnswers": [
+          "right=mid-1"
+        ],
+        "hint": "target이 더 왼쪽에 있을 때 오른쪽 경계를 움직인다."
       }
     ]
   },
   "parsonsExercise": {
-    "prompt": "코드 줄 순서를 올바르게 재배치해 흐름을 완성한다.",
+    "prompt": "mid 계산 -> 비교 -> 경계 갱신 흐름을 줄 순서로 재배치한다.",
     "lines": [
-      "while left <= right:",
-      "mid = (left + right) // 2",
-      "if nums[mid] == target:",
-      "return mid",
-      "if nums[mid] < target:",
-      "left = mid + 1",
-      "else:",
-      "right = mid - 1",
-      "return -1"
+      "    left = 0",
+      "    right = len(arr) - 1",
+      "    while left <= right:",
+      "        mid = (left + right) // 2",
+      "        if arr[mid] == target:",
+      "            return mid",
+      "        if arr[mid] < target:",
+      "            left = mid + 1",
+      "        else:",
+      "            right = mid - 1",
+      "    return -1"
     ],
-    "answerOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-    "groupedIndices": [[2, 3], [4, 5], [6, 7]]
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "groupedIndices": []
   },
   "commonMistake": {
-    "title": "비교 전에 범위를 먼저 줄이는 실수",
-    "whyWrong": "현재 mid 값을 확인하기 전에 left 또는 right를 움직이면 target을 놓치거나 순서가 무너진다."
+    "title": "비교 전에 경계를 먼저 줄이는 실수",
+    "whyWrong": "현재 mid 값 확인 없이 left나 right를 바꾸면 target을 놓치거나 루프 조건이 깨질 수 있다."
   },
-  "bridgeSummary": "이 레슨의 핵심은 mid 계산 → 값 비교 → 범위 축소 순서를 유지하는 것이다. 실전 문제에서도 이 순서가 흐트러지면 반례가 쉽게 발생한다."
+  "bridgeSummary": "이분 탐색 실전 문제는 대부분 반복 조건 확인 -> mid 계산 -> 값 비교 -> 절반 제거 흐름만 정확히 지키면 핵심이 해결된다. 특히 첫 원소, 마지막 원소, 존재하지 않는 값처럼 경계가 예민한 경우에 이 순서가 중요하다.",
+  "faqPrompts": [
+    "왜 while 조건이 left < right 가 아니라 left <= right 인가요?",
+    "arr[mid] < target 일 때 왜 left = mid + 1 인가요?",
+    "target이 없을 때 return -1 이 되는 과정을 설명해줘"
+  ]
 }

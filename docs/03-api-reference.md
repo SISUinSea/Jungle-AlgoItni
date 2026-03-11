@@ -19,9 +19,44 @@
 
 | Method | Endpoint | Auth | 설명 |
 | --- | --- | --- | --- |
+| `POST` | `/api/lesson-chat` | No | 레슨 페이지에서 질문을 보내고 스트리밍 답변을 받는다 |
 | `POST` | `/api/counterexample` | No | 실전 문제용 반례 탐색 파이프라인 실행 |
 
 ## 3A. 핵심 API 상세
+
+#### `POST /api/lesson-chat`
+
+Request:
+
+```json
+{
+  "algorithmSlug": "binary-search",
+  "question": "왜 while 조건이 left <= right 인가요?"
+}
+```
+
+Success:
+
+- 응답 타입: `text/event-stream`
+- 이벤트:
+  - `chunk`: `{"delta":"..."}` 형식의 부분 텍스트
+  - `done`: 스트림 종료
+  - `error`: `{"message":"..."}` 형식의 오류
+
+실패:
+
+```json
+{
+  "message": "Lesson chat is disabled until OPENAI_API_KEY is configured"
+}
+```
+
+상태 코드 규칙:
+
+- `400`: `algorithmSlug`, `question` 누락
+- `404`: 등록되지 않은 `algorithmSlug`
+- `503`: `OPENAI_API_KEY` 미설정
+- `200`: 스트리밍 시작 성공
 
 #### `POST /api/counterexample`
 

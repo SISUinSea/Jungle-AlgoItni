@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "brute-force",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "brute-force-demo-problem",
+  "title": "합이 target인 모든 인덱스 쌍 찾기",
+  "description": "정수 배열에서 두 수의 합이 target이 되는 모든 인덱스 쌍을 찾는다.",
+  "inputFormat": "정수 배열과 목표 합 target이 함수 인자로 주어진다.",
+  "outputFormat": "조건을 만족하는 (i, j) 쌍 리스트를 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "같은 값이 여러 번 나오는 배열",
+    "정답이 없는 경우",
+    "모든 쌍이 정답인 경우"
+  ]
+}

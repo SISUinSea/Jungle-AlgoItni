@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "slug": "recursion",
+    "title": "재귀함수",
+    "aliases": [
+      "recursion",
+      "factorial",
+      "fibonacci"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "recursion",
+      "base-case",
+      "call-stack"
+    ],
+    "summary": "base case와 recursive case를 분리해 같은 패턴을 반복 호출하는 사고방식을 익히는 단원"
+  },
+  "overview": "재귀 단원에서는 멈추는 조건과 더 작은 문제로 줄이는 규칙이 함께 있어야 함수가 올바르게 동작한다는 점을 익힌다.",
+  "coreIdea": "먼저 가장 작은 경우를 바로 반환하고, 그 외에는 더 작은 입력으로 함수를 다시 호출해 답을 조립한다.",
+  "complexity": {
+    "time": "O(2^n) / O(n)",
+    "space": "O(n)"
+  },
+  "commonMistake": {
+    "title": "base case 없이 recursive call부터 작성하는 실수",
+    "whyWrong": "멈추는 조건이 없으면 함수가 끝없이 내려가거나 잘못된 값을 반환한다."
+  },
+  "visualNotes": [
+    "base case와 recursive case이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 base case와 recursive case을 갱신하는 시점을 강조한다."
+  ]
+}

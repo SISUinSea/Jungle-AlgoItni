@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "dynamic-programming",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "dynamic-programming-demo-problem",
+  "title": "계단 오르기 경우의 수",
+  "description": "한 번에 1칸 또는 2칸씩 오를 수 있을 때 n번째 계단까지 도달하는 방법 수를 구한다.",
+  "inputFormat": "계단 수 n이 함수 인자로 주어진다.",
+  "outputFormat": "n번째 계단까지 오르는 방법 수를 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "n = 1",
+    "n = 2",
+    "큰 n에서 반복 계산이 필요한 경우"
+  ]
+}

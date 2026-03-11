@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "graph",
+    "title": "그래프",
+    "aliases": [
+      "graph",
+      "adjacency list"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "graph",
+      "adjacency-list",
+      "data-structure"
+    ],
+    "summary": "정점과 간선을 인접 리스트로 표현해 이후 탐색 알고리즘의 기반 자료구조를 만드는 단원"
+  },
+  "overview": "그래프 단원에서는 각 정점에 연결된 이웃 목록을 어떻게 저장할지 먼저 정해 두는 것이 중요하다.",
+  "coreIdea": "정점 수만큼 빈 리스트를 만들고, 간선을 읽으면서 출발 정점의 이웃 목록에 도착 정점을 추가한다.",
+  "complexity": {
+    "time": "O(V + E)",
+    "space": "O(V + E)"
+  },
+  "commonMistake": {
+    "title": "무방향 그래프인데 한쪽 간선만 추가하는 실수",
+    "whyWrong": "양방향 연결이 빠지면 이후 BFS/DFS 결과와 차수가 모두 달라진다."
+  },
+  "visualNotes": [
+    "정점별 이웃 리스트이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 정점별 이웃 리스트을 갱신하는 시점을 강조한다."
+  ]
+}

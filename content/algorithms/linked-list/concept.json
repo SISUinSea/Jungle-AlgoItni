@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "slug": "linked-list",
+    "title": "링크드리스트",
+    "aliases": [
+      "linked list"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "linked-list",
+      "pointer",
+      "node"
+    ],
+    "summary": "노드와 포인터를 따라가며 값을 저장하고 순회하는 선형 자료구조의 기본 구조"
+  },
+  "overview": "링크드리스트 단원에서는 배열처럼 인덱스로 접근하지 않고, 포인터를 따라 마지막 노드까지 이동하는 방식을 익힌다.",
+  "coreIdea": "append는 마지막 노드까지 next를 따라가 새 노드를 연결하고, print_list는 head부터 끝까지 순회하며 값을 수집한다.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)"
+  },
+  "commonMistake": {
+    "title": "head가 비어 있는 경우와 일반 경우를 같은 흐름으로 처리하는 실수",
+    "whyWrong": "첫 노드를 따로 연결하지 않으면 빈 리스트에 값을 추가할 수 없다."
+  },
+  "visualNotes": [
+    "head와 next 포인터이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 head와 next 포인터을 갱신하는 시점을 강조한다."
+  ]
+}

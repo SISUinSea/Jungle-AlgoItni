@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "topological-sort",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "topological-sort-demo-problem",
+  "title": "작업 순서를 위한 위상 정렬",
+  "description": "선행 관계가 있는 작업 그래프에서 가능한 수행 순서 하나를 구한다.",
+  "inputFormat": "정점 개수와 방향 간선 목록이 함수 인자로 주어진다.",
+  "outputFormat": "위상 정렬 순서를 리스트로 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "간선이 없는 경우",
+    "여러 개의 시작 정점이 있는 경우",
+    "긴 선행 체인이 있는 경우"
+  ]
+}

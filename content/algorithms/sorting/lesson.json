@@ -1,0 +1,82 @@
+{
+  "algorithmSlug": "sorting",
+  "title": "삽입 정렬로 정렬된 구간 확장하기",
+  "objective": "key를 뽑고, 큰 값을 미루고, 빈 자리에 다시 넣는 세 단계를 유지한다.",
+  "codeLanguage": "python",
+  "inputExample": "arr = [12, 11, 13, 5, 6]",
+  "outputExample": "[5, 6, 11, 12, 13]",
+  "representativeCode": "def insertion_sort(arr):\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n\n        while j >= 0 and arr[j] > key:\n            arr[j + 1] = arr[j]\n            j -= 1\n\n        arr[j + 1] = key\n\n    return arr\n\n\ndef insertion_sort_with_steps(arr):\n    print(f\"초기 배열: {arr}\")\n\n    for i in range(1, len(arr)):\n        key = arr[i]\n        j = i - 1\n\n        print(f\"\\nStep {i}: key = {key}\")\n        print(f\"정렬된 부분: {arr[:i]}\")\n\n        while j >= 0 and arr[j] > key:\n            arr[j + 1] = arr[j]\n            j -= 1\n\n        arr[j + 1] = key\n        print(f\"삽입 후: {arr}\")\n\n    return arr",
+  "traceSteps": [
+    {
+      "label": "key 선택",
+      "explanation": "정렬되지 않은 구간의 첫 원소를 key로 들고 나온다."
+    },
+    {
+      "label": "오른쪽 밀기",
+      "explanation": "정렬된 앞부분에서 key보다 큰 값들을 한 칸씩 오른쪽으로 밀어 빈칸을 만든다."
+    },
+    {
+      "label": "삽입",
+      "explanation": "비교가 끝난 자리에 key를 넣어 정렬된 구간을 한 칸 늘린다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "삽입 정렬은 key를 분리한 뒤 큰 값을 미는 흐름이 끊기면 안 된다.",
+    "template": "for i in range(1, len(arr)):\n    __BLANK_b1__\n    j = i - 1\n\n    __BLANK_b2__\n        arr[j + 1] = arr[j]\n        j -= 1\n\n    __BLANK_b3__",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "key = arr[i]",
+        "acceptedAnswers": [
+          "key=arr[i]"
+        ],
+        "hint": "삽입할 현재 원소를 따로 저장한다."
+      },
+      {
+        "id": "b2",
+        "answer": "while j >= 0 and arr[j] > key:",
+        "acceptedAnswers": [
+          "whilej>=0andarr[j]>key:"
+        ],
+        "hint": "밀어낼 원소가 남아 있는 동안 반복한다."
+      },
+      {
+        "id": "b3",
+        "answer": "arr[j + 1] = key",
+        "acceptedAnswers": [
+          "arr[j+1]=key"
+        ],
+        "hint": "빈 자리에 key를 삽입한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "key 선택 -> 큰 값 이동 -> key 삽입 흐름을 코드 줄로 재구성한다.",
+    "lines": [
+      "    for i in range(1, len(arr)):",
+      "        key = arr[i]",
+      "        j = i - 1",
+      "        while j >= 0 and arr[j] > key:",
+      "            arr[j + 1] = arr[j]",
+      "            j -= 1",
+      "        arr[j + 1] = key",
+      "    return arr"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "key를 따로 저장하지 않고 바로 덮어쓰는 실수",
+    "whyWrong": "이동 과정에서 현재 값이 사라지면 마지막에 어디에 넣어야 할지 잃어버린다."
+  },
+  "bridgeSummary": "정렬 문제에서는 '현재 보고 있는 값'과 '이미 정렬된 구간'을 분리해서 생각하면 로직을 안정적으로 유지할 수 있다."
+}

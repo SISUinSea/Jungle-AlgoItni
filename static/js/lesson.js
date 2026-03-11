@@ -33,9 +33,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const parsonsPassButton = document.getElementById("parsons-pass-button");
   const progressResetButton = document.getElementById("progress-reset-button");
   const progressFeedback = document.getElementById("progress-feedback");
+  const chatQuestion = document.getElementById("lesson-chat-question");
+  const chatSubmit = document.getElementById("lesson-chat-submit");
+  const chatReset = document.getElementById("lesson-chat-reset");
+  const chatFeedback = document.getElementById("lesson-chat-feedback");
+  const chatAnswer = document.getElementById("lesson-chat-answer");
+  const chatStatus = document.getElementById("lesson-chat-status");
+  const chatPromptButtons = document.querySelectorAll("[data-chat-prompt]");
 
   function setFeedback(message) {
     if (progressFeedback) progressFeedback.textContent = message;
+  }
+
+  function setChatStatus(message) {
+    if (chatStatus) chatStatus.textContent = message;
+  }
+
+  function setChatFeedback(message) {
+    if (chatFeedback) chatFeedback.textContent = message;
   }
 
   function syncProgressPanel() {
@@ -269,8 +284,138 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function parseSseChunk(chunk) {
+    return chunk
+      .split("\n\n")
+      .map((part) => part.trim())
+      .filter(Boolean)
+      .map((part) => {
+        const lines = part.split("\n");
+        const event = lines.find((line) => line.startsWith("event:"))?.slice(6).trim() || "message";
+        const data = lines
+          .filter((line) => line.startsWith("data:"))
+          .map((line) => line.slice(5).trim())
+          .join("\n");
+        return { event, data };
+      });
+  }
+
+  async function submitLessonQuestion(question) {
+    if (!chatSubmit || !chatAnswer) return;
+
+    chatSubmit.disabled = true;
+    chatAnswer.textContent = "";
+    setChatStatus("streaming");
+    setChatFeedback("질문을 보내는 중입니다.");
+
+    try {
+      const response = await fetch("/api/lesson-chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          algorithmSlug: slug,
+          question,
+        }),
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({ message: "질문 요청에 실패했습니다." }));
+        throw new Error(payload.message || "질문 요청에 실패했습니다.");
+      }
+
+      if (!response.body) {
+        throw new Error("스트리밍 응답을 사용할 수 없습니다.");
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const boundary = buffer.lastIndexOf("\n\n");
+        if (boundary === -1) continue;
+
+        const complete = buffer.slice(0, boundary);
+        buffer = buffer.slice(boundary + 2);
+
+        parseSseChunk(complete).forEach(({ event, data }) => {
+          if (event === "chunk") {
+            const payload = JSON.parse(data);
+            chatAnswer.textContent += payload.delta || "";
+            setChatFeedback("답변을 생성 중입니다.");
+            return;
+          }
+          if (event === "error") {
+            const payload = JSON.parse(data);
+            throw new Error(payload.message || "답변 생성에 실패했습니다.");
+          }
+          if (event === "done") {
+            setChatFeedback("답변이 완료되었습니다.");
+          }
+        });
+      }
+
+      if (buffer.trim()) {
+        parseSseChunk(buffer).forEach(({ event, data }) => {
+          if (event === "chunk") {
+            const payload = JSON.parse(data);
+            chatAnswer.textContent += payload.delta || "";
+          }
+        });
+      }
+
+      if (!chatAnswer.textContent.trim()) {
+        chatAnswer.textContent = "모델이 빈 응답을 반환했습니다.";
+      }
+      setChatStatus("done");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "알 수 없는 오류가 발생했습니다.";
+      chatAnswer.textContent = message;
+      setChatFeedback("질문을 처리하지 못했습니다.");
+      setChatStatus("error");
+    } finally {
+      chatSubmit.disabled = false;
+    }
+  }
+
+  if (chatSubmit && chatQuestion) {
+    chatSubmit.addEventListener("click", async () => {
+      const question = chatQuestion.value.trim();
+      if (!question) {
+        setChatFeedback("질문을 먼저 입력하세요.");
+        setChatStatus("idle");
+        return;
+      }
+      await submitLessonQuestion(question);
+    });
+  }
+
+  if (chatReset && chatQuestion && chatAnswer) {
+    chatReset.addEventListener("click", () => {
+      chatQuestion.value = "";
+      chatAnswer.textContent = "여기에 답변이 표시됩니다.";
+      setChatFeedback("질문과 답변을 초기화했습니다.");
+      setChatStatus("idle");
+    });
+  }
+
+  chatPromptButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!chatQuestion) return;
+      chatQuestion.value = button.dataset.chatPrompt || "";
+      chatQuestion.focus();
+    });
+  });
+
   progressApi.setLastAlgorithm(slug);
   renderBlankForm();
   syncProgressPanel();
   renderParsonsList();
+  setChatStatus("idle");
 });

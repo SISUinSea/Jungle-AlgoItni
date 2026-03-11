@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "string",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "string-demo-problem",
+  "title": "특수문자를 무시한 회문 판별",
+  "description": "문자열에서 알파벳과 숫자만 남기고 소문자로 바꾼 뒤 회문인지 판단한다.",
+  "inputFormat": "문자열 하나가 함수 인자로 주어진다.",
+  "outputFormat": "회문이면 True, 아니면 False를 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "빈 문자열",
+    "숫자만 있는 문자열",
+    "대소문자만 다른 회문"
+  ]
+}

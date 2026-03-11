@@ -24,6 +24,7 @@ def load_json(path: Path) -> dict:
 def test_algorithm_content_contracts_are_present():
     algorithm_dirs = sorted(path for path in ALGORITHMS_DIR.iterdir() if path.is_dir())
     assert algorithm_dirs
+    assert len(algorithm_dirs) == 23
 
     banned_terms = {"example_id", "whiteboardExercise"}
 
@@ -82,6 +83,15 @@ def test_foundation_pages_render(client):
     ]:
         response = client.get(path)
         assert response.status_code == 200
+
+
+def test_lesson_page_contains_chat_ui(client):
+    response = client.get("/algorithms/binary-search/lesson")
+    html = response.get_data(as_text=True)
+
+    assert 'id="lesson-chat-question"' in html
+    assert 'id="lesson-chat-submit"' in html
+    assert 'data-chat-prompt=' in html
 
 
 def test_problem_links_are_locked_until_lesson_completion(client):
@@ -178,6 +188,47 @@ def test_counterexample_returns_not_implemented_placeholder(client):
     assert response.status_code == 501
     assert response.get_json() == {
         "message": "Counterexample pipeline is not implemented in codex/foundation-contracts."
+    }
+
+
+def test_lesson_chat_requires_algorithm_slug(client):
+    response = client.post("/api/lesson-chat", json={"question": "설명해줘"})
+
+    assert response.status_code == 400
+    assert response.get_json() == {"message": "algorithmSlug is required"}
+
+
+def test_lesson_chat_requires_question(client):
+    response = client.post("/api/lesson-chat", json={"algorithmSlug": "binary-search"})
+
+    assert response.status_code == 400
+    assert response.get_json() == {"message": "question is required"}
+
+
+def test_lesson_chat_rejects_unknown_algorithm(client):
+    response = client.post(
+        "/api/lesson-chat",
+        json={"algorithmSlug": "missing-slug", "question": "설명해줘"},
+    )
+
+    assert response.status_code == 404
+    assert response.get_json() == {"message": "Unknown algorithmSlug"}
+
+
+def test_lesson_chat_returns_503_without_api_key(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    app = create_app()
+    app.config.update(TESTING=True)
+    client = app.test_client()
+
+    response = client.post(
+        "/api/lesson-chat",
+        json={"algorithmSlug": "binary-search", "question": "설명해줘"},
+    )
+
+    assert response.status_code == 503
+    assert response.get_json() == {
+        "message": "Lesson chat is disabled until OPENAI_API_KEY is configured"
     }
 
 

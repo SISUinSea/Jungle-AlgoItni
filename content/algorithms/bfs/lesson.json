@@ -1,0 +1,86 @@
+{
+  "algorithmSlug": "bfs",
+  "title": "큐 기반 BFS 방문 순서 만들기",
+  "objective": "발견 즉시 방문 표시하고 큐 뒤에 넣는 BFS의 핵심 규칙을 고정한다.",
+  "codeLanguage": "python",
+  "inputExample": "graph = {0: [1, 2], 1: [0, 2], 2: [0, 1, 3], 3: [2]}\nstart = 0",
+  "outputExample": "[0, 1, 2, 3]",
+  "representativeCode": "from collections import deque\n\n\ndef bfs(graph, start):\n    visited = []\n    queue = deque([start])\n    seen = {start}\n\n    while queue:\n        vertex = queue.popleft()\n        visited.append(vertex)\n\n        for neighbor in graph[vertex]:\n            if neighbor not in seen:\n                seen.add(neighbor)\n                queue.append(neighbor)\n\n    return visited",
+  "traceSteps": [
+    {
+      "label": "시작 정점 적재",
+      "explanation": "시작 정점을 큐와 seen 집합에 동시에 넣어 첫 방문을 기록한다."
+    },
+    {
+      "label": "가까운 정점 처리",
+      "explanation": "큐에서 먼저 나온 정점을 visited에 추가해 실제 방문 순서를 확정한다."
+    },
+    {
+      "label": "새 이웃 예약",
+      "explanation": "아직 보지 않은 이웃만 seen에 추가하고 큐 뒤에 넣어 다음 거리 레벨을 준비한다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "BFS는 발견 순간에 seen 처리하지 않으면 같은 정점이 큐에 여러 번 들어갈 수 있다.",
+    "template": "visited = []\n__BLANK_b1__\n__BLANK_b2__\n\nwhile queue:\n    vertex = queue.popleft()\n    visited.append(vertex)\n\n    for neighbor in graph[vertex]:\n        if neighbor not in seen:\n            seen.add(neighbor)\n            __BLANK_b3__\n\nreturn visited",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "queue = deque([start])",
+        "acceptedAnswers": [
+          "queue=deque([start])"
+        ],
+        "hint": "시작 정점을 큐에 넣는다."
+      },
+      {
+        "id": "b2",
+        "answer": "seen = {start}",
+        "acceptedAnswers": [
+          "seen={start}"
+        ],
+        "hint": "시작 정점을 이미 본 정점으로 기록한다."
+      },
+      {
+        "id": "b3",
+        "answer": "queue.append(neighbor)",
+        "acceptedAnswers": [],
+        "hint": "새로 발견한 이웃을 다음 방문 후보로 넣는다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "큐 초기화 -> popleft -> 새 이웃 append 순서를 복원한다.",
+    "lines": [
+      "    visited = []",
+      "    queue = deque([start])",
+      "    seen = {start}",
+      "    while queue:",
+      "        vertex = queue.popleft()",
+      "        visited.append(vertex)",
+      "        for neighbor in graph[vertex]:",
+      "            if neighbor not in seen:",
+      "                seen.add(neighbor)",
+      "                queue.append(neighbor)",
+      "    return visited"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "큐에서 꺼낸 뒤에야 방문 체크하는 실수",
+    "whyWrong": "같은 정점이 여러 부모를 통해 중복 enqueue되어 BFS 순서와 비용이 불필요하게 늘어난다."
+  },
+  "bridgeSummary": "최단 거리 성질이 중요한 실전 그래프 문제는 대부분 BFS의 '먼저 발견한 순서대로 큐 처리' 규칙에서 출발한다."
+}

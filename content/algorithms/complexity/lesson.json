@@ -1,0 +1,80 @@
+{
+  "algorithmSlug": "complexity",
+  "title": "중복 탐색 세 가지 복잡도 비교하기",
+  "objective": "같은 출력이라도 반복 횟수와 보조 자료구조가 어떻게 달라지는지 코드 수준에서 비교한다.",
+  "codeLanguage": "python",
+  "inputExample": "nums = [4, 3, 2, 7, 8, 2, 3, 1]",
+  "outputExample": "[2, 3]",
+  "representativeCode": "def find_duplicates_brute_force(nums):\n    duplicates = []\n    n = len(nums)\n\n    for i in range(n):\n        for j in range(i + 1, n):\n            if nums[i] == nums[j] and nums[i] not in duplicates:\n                duplicates.append(nums[i])\n                break\n\n    return duplicates\n\n\ndef find_duplicates_sorting(nums):\n    if not nums:\n        return []\n\n    nums.sort()\n    duplicates = []\n\n    for index in range(len(nums) - 1):\n        if nums[index] == nums[index + 1] and nums[index] not in duplicates:\n            duplicates.append(nums[index])\n\n    return duplicates\n\n\ndef find_duplicates_hash(nums):\n    seen = set()\n    duplicates = set()\n\n    for number in nums:\n        if number in seen:\n            duplicates.add(number)\n        else:\n            seen.add(number)\n\n    return list(duplicates)\n\n\ndef measure_time(func, nums, method_name):\n    result = func(nums[:])\n    print(f\"{method_name}: {sorted(result)}\")\n    print()",
+  "traceSteps": [
+    {
+      "label": "기준 구현 작성",
+      "explanation": "먼저 이중 반복문으로 모든 쌍을 직접 비교하는 가장 단순한 구현을 만든다."
+    },
+    {
+      "label": "구조 개선",
+      "explanation": "정렬이나 해시 집합을 써서 비교 범위를 줄이거나 이미 본 값을 저장한다."
+    },
+    {
+      "label": "복잡도 비교",
+      "explanation": "출력은 같지만 반복 수와 추가 메모리가 어떻게 달라지는지 정리한다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "복잡도 비교의 핵심은 같은 문제를 다른 자료구조로 다시 푸는 데 있다.",
+    "template": "__BLANK_b1__\nduplicates = set()\n\nfor number in nums:\n    __BLANK_b2__\n        __BLANK_b3__\n    else:\n        seen.add(number)\n\nreturn list(duplicates)",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "seen = set()",
+        "acceptedAnswers": [
+          "seen=set()"
+        ],
+        "hint": "이미 본 숫자를 저장할 집합을 만든다."
+      },
+      {
+        "id": "b2",
+        "answer": "if number in seen:",
+        "acceptedAnswers": [
+          "ifnumberinseen:"
+        ],
+        "hint": "현재 숫자가 이미 등장했는지 확인한다."
+      },
+      {
+        "id": "b3",
+        "answer": "duplicates.add(number)",
+        "acceptedAnswers": [],
+        "hint": "중복으로 확인된 숫자를 결과 집합에 추가한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "해시 집합 버전의 중복 탐색 흐름을 순서대로 복원한다.",
+    "lines": [
+      "    seen = set()",
+      "    duplicates = set()",
+      "    for number in nums:",
+      "        if number in seen:",
+      "            duplicates.add(number)",
+      "        else:",
+      "            seen.add(number)",
+      "    return list(duplicates)"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "출력이 같으니 구현 차이도 중요하지 않다고 보는 실수",
+    "whyWrong": "같은 정답이라도 입력 크기가 커지면 O(n^2)와 O(n)의 실행 시간 차이는 매우 크게 벌어진다."
+  },
+  "bridgeSummary": "실전 문제에서는 먼저 기준 풀이를 만들고, 병목이 되는 반복이나 조회를 어떤 자료구조로 줄일 수 있는지 바로 이어서 생각하는 습관이 중요하다."
+}

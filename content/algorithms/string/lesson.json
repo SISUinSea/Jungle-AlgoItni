@@ -1,0 +1,62 @@
+{
+  "algorithmSlug": "string",
+  "title": "정제 후 회문 판별하기",
+  "objective": "전처리와 실제 비교 단계를 분리해 문자열 문제를 안정적으로 구현한다.",
+  "codeLanguage": "python",
+  "inputExample": "s = \"A man, a plan, a canal: Panama\"",
+  "outputExample": "True",
+  "representativeCode": "def is_palindrome(s):\n    filtered = \"\".join(char.lower() for char in s if char.isalnum())\n    return filtered == filtered[::-1]",
+  "traceSteps": [
+    {
+      "label": "문자 정제",
+      "explanation": "알파벳과 숫자만 남기고 모두 소문자로 바꿔 비교 기준을 통일한다."
+    },
+    {
+      "label": "뒤집기",
+      "explanation": "정제된 문자열을 같은 규칙으로 뒤집어 비교 대상을 만든다."
+    },
+    {
+      "label": "동일성 비교",
+      "explanation": "원본과 뒤집은 문자열이 같으면 회문으로 판단한다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "문자열 문제는 비교 전에 어떤 문자를 남길지 먼저 고정해야 한다.",
+    "template": "__BLANK_b1__\n__BLANK_b2__",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "filtered = \"\".join(char.lower() for char in s if char.isalnum())",
+        "acceptedAnswers": [
+          "filtered=\"\".join(char.lower()forcharinsifchar.isalnum())"
+        ],
+        "hint": "비교 전 정제 과정을 한 줄로 만든다."
+      },
+      {
+        "id": "b2",
+        "answer": "return filtered == filtered[::-1]",
+        "acceptedAnswers": [
+          "returnfiltered==filtered[::-1]"
+        ],
+        "hint": "정제된 문자열과 뒤집은 문자열을 비교한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "정제 -> 뒤집기 비교의 최소 흐름을 코드 순서로 재배치한다.",
+    "lines": [
+      "    filtered = \"\".join(char.lower() for char in s if char.isalnum())",
+      "    return filtered == filtered[::-1]"
+    ],
+    "answerOrder": [
+      0,
+      1
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "원본 문자열을 그대로 비교하는 실수",
+    "whyWrong": "공백, 구두점, 대소문자를 그대로 두면 문제에서 무시하라고 한 요소 때문에 오답이 된다."
+  },
+  "bridgeSummary": "실전 문자열 문제에서는 먼저 '비교 전에 무엇을 버리고 무엇을 남길지'를 정리하면 이후 로직이 단순해진다."
+}

@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "bfs",
+    "title": "BFS",
+    "aliases": [
+      "bfs",
+      "breadth-first search"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "graph",
+      "bfs",
+      "queue"
+    ],
+    "summary": "가까운 정점부터 차례로 방문하기 위해 큐를 사용하는 그래프 탐색 단원"
+  },
+  "overview": "BFS 단원에서는 먼저 발견한 정점을 큐에 넣고, 그 큐 순서대로 꺼내며 같은 거리에 있는 정점부터 방문한다.",
+  "coreIdea": "시작 정점을 큐에 넣고 방문 처리한 뒤, 큐에서 꺼낸 정점의 이웃 중 아직 방문하지 않은 정점을 다시 큐 뒤에 넣는다.",
+  "complexity": {
+    "time": "O(V + E)",
+    "space": "O(V)"
+  },
+  "commonMistake": {
+    "title": "큐에서 꺼낸 뒤에야 방문 체크하는 실수",
+    "whyWrong": "같은 정점이 여러 부모를 통해 중복 enqueue되어 BFS 순서와 비용이 불필요하게 늘어난다."
+  },
+  "visualNotes": [
+    "큐와 visited 집합이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 큐와 visited 집합을 갱신하는 시점을 강조한다."
+  ]
+}

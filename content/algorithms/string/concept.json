@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "string",
+    "title": "문자열",
+    "aliases": [
+      "string",
+      "palindrome"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "string",
+      "two-pointer",
+      "normalization"
+    ],
+    "summary": "문자열을 정제한 뒤 같은 기준으로 앞뒤를 비교하는 전처리 패턴을 익히는 단원"
+  },
+  "overview": "문자열 단원에서는 대소문자와 특수문자처럼 비교 전에 제거해야 하는 요소를 먼저 정리하는 습관을 만든다.",
+  "coreIdea": "알파벳과 숫자만 남기고 모두 소문자로 바꾼 뒤, 정제된 문자열이 뒤집은 문자열과 같은지 비교한다.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "commonMistake": {
+    "title": "원본 문자열을 그대로 비교하는 실수",
+    "whyWrong": "공백, 구두점, 대소문자를 그대로 두면 문제에서 무시하라고 한 요소 때문에 오답이 된다."
+  },
+  "visualNotes": [
+    "정제된 문자열이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 정제된 문자열을 갱신하는 시점을 강조한다."
+  ]
+}

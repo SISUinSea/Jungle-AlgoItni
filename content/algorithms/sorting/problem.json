@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "sorting",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "sorting-demo-problem",
+  "title": "삽입 정렬 구현",
+  "description": "배열을 앞에서부터 보며 각 원소를 정렬된 위치에 삽입해 오름차순으로 정렬한다.",
+  "inputFormat": "정렬되지 않은 정수 배열이 함수 인자로 주어진다.",
+  "outputFormat": "정렬된 배열을 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "이미 정렬된 배열",
+    "역순 배열",
+    "중복 원소가 있는 배열"
+  ]
+}

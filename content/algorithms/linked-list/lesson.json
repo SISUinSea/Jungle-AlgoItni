@@ -1,0 +1,82 @@
+{
+  "algorithmSlug": "linked-list",
+  "title": "연결 리스트에 노드 추가하고 순회하기",
+  "objective": "head 처리와 마지막 노드 탐색을 분리해 연결 리스트 기본 동작을 안정적으로 구현한다.",
+  "codeLanguage": "python",
+  "inputExample": "1 -> 2 -> 3",
+  "outputExample": "[1, 2, 3]",
+  "representativeCode": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def append(self, data):\n        new_node = Node(data)\n\n        if self.head is None:\n            self.head = new_node\n            return\n\n        current = self.head\n        while current.next is not None:\n            current = current.next\n\n        current.next = new_node\n\n    def print_list(self):\n        values = []\n        current = self.head\n\n        while current is not None:\n            values.append(current.data)\n            current = current.next\n\n        return values",
+  "traceSteps": [
+    {
+      "label": "빈 리스트 처리",
+      "explanation": "append 호출 시 head가 비어 있으면 새 노드를 바로 head로 둔다."
+    },
+    {
+      "label": "끝까지 이동",
+      "explanation": "리스트가 비어 있지 않으면 current를 next로 이동시켜 마지막 노드를 찾는다."
+    },
+    {
+      "label": "연결과 순회",
+      "explanation": "마지막 노드의 next를 새 노드로 바꾸고, 출력 시에는 head부터 끝까지 값을 읽는다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "연결 리스트는 빈 리스트 처리와 마지막 노드 탐색을 빼먹지 않아야 한다.",
+    "template": "new_node = Node(data)\n\n__BLANK_b1__\n    self.head = new_node\n    return\n\ncurrent = self.head\n__BLANK_b2__\n    current = current.next\n\n__BLANK_b3__",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "if self.head is None:",
+        "acceptedAnswers": [
+          "ifself.headisNone:"
+        ],
+        "hint": "빈 리스트인지 먼저 확인한다."
+      },
+      {
+        "id": "b2",
+        "answer": "while current.next is not None:",
+        "acceptedAnswers": [
+          "whilecurrent.nextisnotNone:"
+        ],
+        "hint": "마지막 노드를 찾을 때까지 포인터를 이동한다."
+      },
+      {
+        "id": "b3",
+        "answer": "current.next = new_node",
+        "acceptedAnswers": [
+          "current.next=new_node"
+        ],
+        "hint": "마지막 노드 뒤에 새 노드를 연결한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "빈 리스트 처리 -> 마지막 노드 찾기 -> 연결 순서를 복원한다.",
+    "lines": [
+      "    new_node = Node(data)",
+      "    if self.head is None:",
+      "        self.head = new_node",
+      "        return",
+      "    current = self.head",
+      "    while current.next is not None:",
+      "        current = current.next",
+      "    current.next = new_node"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "head가 비어 있는 경우와 일반 경우를 같은 흐름으로 처리하는 실수",
+    "whyWrong": "첫 노드를 따로 연결하지 않으면 빈 리스트에 값을 추가할 수 없다."
+  },
+  "bridgeSummary": "포인터 기반 자료구조는 인덱스 대신 '현재 노드에서 다음 노드로 어떻게 이동하는가'를 따라가며 구현해야 한다."
+}

@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "number-theory",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "number-theory-demo-problem",
+  "title": "최대공약수와 최소공배수 계산",
+  "description": "두 양의 정수가 주어질 때 최대공약수와 최소공배수를 계산한다.",
+  "inputFormat": "두 양의 정수 a, b가 함수 인자로 주어진다.",
+  "outputFormat": "GCD와 LCM을 계산해 반환하거나 출력한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "두 수가 같은 경우",
+    "서로소인 경우",
+    "한 수가 다른 수의 배수인 경우"
+  ]
+}

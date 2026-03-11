@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "greedy",
+    "title": "그리디",
+    "aliases": [
+      "greedy",
+      "meeting room"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "greedy",
+      "interval",
+      "sorting"
+    ],
+    "summary": "지금 당장 가장 좋은 선택을 반복해 전체 해를 만드는 그리디 전략을 회의실 배정으로 익히는 단원"
+  },
+  "overview": "그리디 단원에서는 한 번의 선택이 다음 선택 가능성을 최대화하는 기준이 무엇인지 찾는 훈련을 한다.",
+  "coreIdea": "종료 시간이 가장 빠른 회의부터 정렬하고, 직전에 선택한 회의가 끝난 뒤 시작하는 회의만 차례로 고른다.",
+  "complexity": {
+    "time": "O(n log n)",
+    "space": "O(n)"
+  },
+  "commonMistake": {
+    "title": "시작 시간이 빠른 회의부터 고르는 실수",
+    "whyWrong": "그리디 기준이 잘못되면 이후에 더 많은 회의를 배정할 기회를 놓친다."
+  },
+  "visualNotes": [
+    "마지막 선택 회의의 종료 시간이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 마지막 선택 회의의 종료 시간을 갱신하는 시점을 강조한다."
+  ]
+}

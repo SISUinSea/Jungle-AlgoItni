@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "recursion",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "recursion-demo-problem",
+  "title": "재귀로 팩토리얼과 피보나치 계산",
+  "description": "재귀 함수를 사용해 팩토리얼과 피보나치 수를 각각 계산한다.",
+  "inputFormat": "양의 정수 n이 함수 인자로 주어진다.",
+  "outputFormat": "팩토리얼 값과 n번째 피보나치 값을 계산해 반환하거나 출력한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "n = 0",
+    "n = 1",
+    "재귀 깊이가 커지는 큰 입력"
+  ]
+}

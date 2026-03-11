@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "queue",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "queue-demo-problem",
+  "title": "프린터 작업 대기열 처리",
+  "description": "들어온 순서대로 프린터 작업을 처리하는 큐를 구현한다.",
+  "inputFormat": "작업 이름 문자열 리스트가 함수 인자로 주어진다.",
+  "outputFormat": "처리된 작업 이름 리스트를 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "작업이 없는 경우",
+    "작업이 1개인 경우",
+    "같은 이름 작업이 반복되는 경우"
+  ]
+}

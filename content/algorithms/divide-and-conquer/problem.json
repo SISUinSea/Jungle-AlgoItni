@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "divide-and-conquer",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "divide-and-conquer-demo-problem",
+  "title": "분할정복으로 배열 최댓값 찾기",
+  "description": "배열 구간을 절반씩 나눠 각 구간의 최댓값을 구하고 다시 합쳐 전체 최댓값을 찾는다.",
+  "inputFormat": "정수 배열과 시작/끝 인덱스가 함수 인자로 주어진다.",
+  "outputFormat": "주어진 구간의 최댓값을 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "원소가 1개인 배열",
+    "오름차순 배열",
+    "최댓값이 맨 앞에 있는 경우"
+  ]
+}

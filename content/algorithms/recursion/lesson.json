@@ -1,0 +1,76 @@
+{
+  "algorithmSlug": "recursion",
+  "title": "base case와 recursive case로 수열 계산하기",
+  "objective": "재귀 함수에서 종료 조건과 더 작은 문제로 이동하는 규칙을 분명히 나눈다.",
+  "codeLanguage": "python",
+  "inputExample": "n = 5",
+  "outputExample": "5! = 120\nfib(5) = 5",
+  "representativeCode": "def factorial(n):\n    if n in (0, 1):\n        return 1\n    return n * factorial(n - 1)\n\n\ndef fibonacci(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    return fibonacci(n - 1) + fibonacci(n - 2)",
+  "traceSteps": [
+    {
+      "label": "종료 조건 확인",
+      "explanation": "가장 작은 입력이면 더 내려가지 않고 바로 답을 반환한다."
+    },
+    {
+      "label": "작은 문제 호출",
+      "explanation": "아직 크기가 남아 있으면 더 작은 n으로 같은 함수를 호출한다."
+    },
+    {
+      "label": "결과 조립",
+      "explanation": "호출 결과를 곱하거나 더해 현재 문제의 답을 만든다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "재귀 함수는 언제 멈추고, 언제 더 작은 문제로 내려가는지가 핵심이다.",
+    "template": "__BLANK_b1__\n    return 0\n__BLANK_b2__\n    return 1\n__BLANK_b3__",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "if n == 0:",
+        "acceptedAnswers": [
+          "ifn==0:"
+        ],
+        "hint": "첫 번째 종료 조건을 확인한다."
+      },
+      {
+        "id": "b2",
+        "answer": "if n == 1:",
+        "acceptedAnswers": [
+          "ifn==1:"
+        ],
+        "hint": "두 번째 종료 조건을 확인한다."
+      },
+      {
+        "id": "b3",
+        "answer": "return fibonacci(n - 1) + fibonacci(n - 2)",
+        "acceptedAnswers": [
+          "returnfibonacci(n-1)+fibonacci(n-2)"
+        ],
+        "hint": "더 작은 두 문제를 조합해 현재 답을 만든다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "종료 조건을 먼저 두고, 마지막에 recursive case를 배치해야 한다.",
+    "lines": [
+      "    if n == 0:",
+      "        return 0",
+      "    if n == 1:",
+      "        return 1",
+      "    return fibonacci(n - 1) + fibonacci(n - 2)"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "base case 없이 recursive call부터 작성하는 실수",
+    "whyWrong": "멈추는 조건이 없으면 함수가 끝없이 내려가거나 잘못된 값을 반환한다."
+  },
+  "bridgeSummary": "재귀 문제를 만나면 먼저 가장 작은 입력의 답을 적고, 그 다음에 '현재 답을 어떤 더 작은 답들로 만들 수 있는가'를 써 보는 것이 안전하다."
+}

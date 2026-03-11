@@ -1,0 +1,78 @@
+{
+  "algorithmSlug": "queue",
+  "title": "큐로 프린터 작업 순서 처리하기",
+  "objective": "enqueue된 순서를 그대로 dequeue해 처리 순서에 반영한다.",
+  "codeLanguage": "python",
+  "inputExample": "jobs = [\"문서A\", \"문서B\", \"문서C\"]",
+  "outputExample": "['문서A', '문서B', '문서C']",
+  "representativeCode": "from collections import deque\n\n\ndef process_print_queue(jobs):\n    queue = deque(jobs)\n    processed = []\n\n    while queue:\n        job = queue.popleft()\n        print(f\"처리: {job}\")\n        processed.append(job)\n\n    return processed",
+  "traceSteps": [
+    {
+      "label": "초기 적재",
+      "explanation": "입력 작업 목록을 deque로 감싸 FIFO 큐를 만든다."
+    },
+    {
+      "label": "앞에서 꺼내기",
+      "explanation": "큐가 빌 때까지 맨 앞 작업을 popleft로 꺼낸다."
+    },
+    {
+      "label": "처리 기록",
+      "explanation": "처리한 작업을 출력하고 결과 리스트에 같은 순서로 저장한다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "큐 문제는 자료가 들어간 순서와 나오는 순서를 일관되게 유지해야 한다.",
+    "template": "__BLANK_b1__\nprocessed = []\n\nwhile queue:\n    __BLANK_b2__\n    print(f\"처리: {job}\")\n    __BLANK_b3__\n\nreturn processed",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "queue = deque(jobs)",
+        "acceptedAnswers": [
+          "queue=deque(jobs)"
+        ],
+        "hint": "작업 목록을 큐로 바꾼다."
+      },
+      {
+        "id": "b2",
+        "answer": "job = queue.popleft()",
+        "acceptedAnswers": [
+          "job=queue.popleft()"
+        ],
+        "hint": "맨 앞 작업을 꺼낸다."
+      },
+      {
+        "id": "b3",
+        "answer": "processed.append(job)",
+        "acceptedAnswers": [],
+        "hint": "처리 순서를 결과 리스트에 저장한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "큐 생성 -> 앞에서 꺼내기 -> 처리 기록 순서를 복원한다.",
+    "lines": [
+      "    queue = deque(jobs)",
+      "    processed = []",
+      "    while queue:",
+      "        job = queue.popleft()",
+      "        print(f\"처리: {job}\")",
+      "        processed.append(job)",
+      "    return processed"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "리스트의 뒤에서 pop해 스택처럼 처리하는 실수",
+    "whyWrong": "FIFO가 깨지면 가장 먼저 들어온 작업이 먼저 처리된다는 문제 조건을 만족하지 못한다."
+  },
+  "bridgeSummary": "작업 순서가 중요한 실전 문제에서는 '새 작업은 어디에 넣고, 다음 작업은 어디에서 꺼내는가'를 먼저 정하면 구현이 단순해진다."
+}

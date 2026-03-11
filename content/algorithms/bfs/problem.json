@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "bfs",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "bfs-demo-problem",
+  "title": "그래프 BFS 순회",
+  "description": "시작 정점에서 가까운 정점부터 차례로 방문하는 BFS 순서를 구한다.",
+  "inputFormat": "인접 리스트 그래프와 시작 정점이 함수 인자로 주어진다.",
+  "outputFormat": "방문 순서를 리스트로 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "시작 정점만 있는 경우",
+    "사이클이 있는 그래프",
+    "연결되지 않은 정점이 있는 그래프"
+  ]
+}

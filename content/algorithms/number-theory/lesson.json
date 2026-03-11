@@ -1,0 +1,72 @@
+{
+  "algorithmSlug": "number-theory",
+  "title": "유클리드 호제법으로 GCD와 LCM 구하기",
+  "objective": "나머지가 0이 될 때까지 수를 줄이는 패턴을 기준 구현으로 고정한다.",
+  "codeLanguage": "python",
+  "inputExample": "a = 48\nb = 18",
+  "outputExample": "GCD = 6\nLCM = 144",
+  "representativeCode": "def gcd(a, b):\n    if b == 0:\n        return a\n    return gcd(b, a % b)\n\n\ndef gcd_iterative(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\n\ndef lcm(a, b):\n    return a * b // gcd(a, b)\n\n\ndef extended_gcd(a, b):\n    if b == 0:\n        return a, 1, 0\n    g, x1, y1 = extended_gcd(b, a % b)\n    x = y1\n    y = x1 - (a // b) * y1\n    return g, x, y\n\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n\n    limit = int(n ** 0.5)\n    for divisor in range(3, limit + 1, 2):\n        if n % divisor == 0:\n            return False\n\n    return True",
+  "traceSteps": [
+    {
+      "label": "나머지 축소",
+      "explanation": "gcd는 두 수를 더 작은 쌍 (b, a % b)로 줄여 간다."
+    },
+    {
+      "label": "기본값 재사용",
+      "explanation": "LCM과 확장 유클리드도 같은 gcd 구조를 바탕으로 계산을 이어 간다."
+    },
+    {
+      "label": "약수 탐색 최적화",
+      "explanation": "소수 판별은 sqrt(n)까지만 검사해 불필요한 나눗셈을 줄인다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "정수론 구현은 나머지로 문제 크기를 줄이는 규칙을 정확히 기억해야 한다.",
+    "template": "__BLANK_b1__\n    __BLANK_b2__\n__BLANK_b3__",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "if b == 0:",
+        "acceptedAnswers": [
+          "ifb==0:"
+        ],
+        "hint": "나머지가 0이면 더 이상 줄일 수 없다."
+      },
+      {
+        "id": "b2",
+        "answer": "return a",
+        "acceptedAnswers": [
+          "returna"
+        ],
+        "hint": "종료 조건에서 최대공약수를 반환한다."
+      },
+      {
+        "id": "b3",
+        "answer": "return gcd(b, a % b)",
+        "acceptedAnswers": [
+          "returngcd(b,a%b)"
+        ],
+        "hint": "더 작은 문제로 재귀 호출한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "유클리드 호제법의 종료 조건과 재귀 호출 순서를 복원한다.",
+    "lines": [
+      "    if b == 0:",
+      "        return a",
+      "    return gcd(b, a % b)"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "a % b와 b의 위치를 뒤바꾸는 실수",
+    "whyWrong": "유클리드 호제법은 (b, a % b) 순서로 줄여야 동일한 최대공약수를 유지할 수 있다."
+  },
+  "bridgeSummary": "수학 문제에서는 식을 외우는 것보다 '어떤 값이 줄어들며 언제 종료되는가'를 먼저 보면 구현 실수가 줄어든다."
+}

@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "dfs",
+    "title": "DFS",
+    "aliases": [
+      "dfs",
+      "depth-first search"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "graph",
+      "dfs",
+      "recursion"
+    ],
+    "summary": "한 방향으로 끝까지 내려갔다가 돌아오는 깊이 우선 탐색의 재귀 패턴을 익히는 단원"
+  },
+  "overview": "DFS 단원에서는 현재 정점을 방문한 뒤 아직 보지 않은 이웃으로 재귀 호출해 깊이 우선으로 내려가는 구조를 익힌다.",
+  "coreIdea": "현재 정점을 visited에 추가하고, 인접 정점 중 아직 없는 정점만 골라 같은 함수를 재귀 호출한다.",
+  "complexity": {
+    "time": "O(V + E)",
+    "space": "O(V)"
+  },
+  "commonMistake": {
+    "title": "재귀 호출 전에 현재 정점을 visited에 넣지 않는 실수",
+    "whyWrong": "사이클이 있는 그래프에서 같은 정점으로 계속 되돌아와 무한 재귀가 발생할 수 있다."
+  },
+  "visualNotes": [
+    "재귀 호출 스택과 visited 순서이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 재귀 호출 스택과 visited 순서을 갱신하는 시점을 강조한다."
+  ]
+}

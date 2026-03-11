@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "queue",
+    "title": "큐",
+    "aliases": [
+      "queue",
+      "printer queue"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "queue",
+      "fifo",
+      "deque"
+    ],
+    "summary": "먼저 들어온 작업이 먼저 처리되는 FIFO 구조를 실제 처리 순서와 함께 익히는 단원"
+  },
+  "overview": "큐 단원에서는 입력 순서와 처리 순서가 같아야 하는 문제를 자료구조 관점에서 해석하는 법을 배운다.",
+  "coreIdea": "작업을 deque에 넣고, 앞에서 하나씩 꺼내 처리 목록에 추가하면 FIFO 순서가 유지된다.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "commonMistake": {
+    "title": "리스트의 뒤에서 pop해 스택처럼 처리하는 실수",
+    "whyWrong": "FIFO가 깨지면 가장 먼저 들어온 작업이 먼저 처리된다는 문제 조건을 만족하지 못한다."
+  },
+  "visualNotes": [
+    "큐의 앞과 뒤이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 큐의 앞과 뒤을 갱신하는 시점을 강조한다."
+  ]
+}

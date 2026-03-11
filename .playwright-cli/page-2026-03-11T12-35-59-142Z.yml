@@ -1,0 +1,62 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "algoitni" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=e6]: 대표 구현 1개를 중심으로 학습 흐름을 고정하는 알고리즘 학습 MVP
+    - generic [ref=e7]: role 2 · lesson/ui
+  - generic [ref=e8]:
+    - link "홈" [ref=e9] [cursor=pointer]:
+      - /url: /
+    - text: / 이진 탐색
+  - generic [ref=e10]:
+    - article [ref=e11]:
+      - paragraph [ref=e12]: binary-search
+      - heading "이진 탐색" [level=1] [ref=e13]
+      - paragraph [ref=e14]: 이진 탐색은 정렬된 배열에서 중간값을 기준으로 탐색 범위를 절반씩 줄이며 원하는 값을 찾는 알고리즘이다.
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - paragraph [ref=e17]: 핵심 아이디어
+          - paragraph [ref=e18]: mid를 계산하고, target이 mid보다 왼쪽에 있는지 오른쪽에 있는지 비교해서 살아남을 절반만 유지한다.
+        - generic [ref=e19]:
+          - paragraph [ref=e20]: 복잡도
+          - list [ref=e21]:
+            - listitem [ref=e22]: "시간: O(log n)"
+            - listitem [ref=e23]: "공간: O(1)"
+      - generic [ref=e24]:
+        - paragraph [ref=e25]: left와 right를 반대로 갱신하는 실수
+        - paragraph [ref=e26]: nums[mid] < target이면 target은 오른쪽에만 있을 수 있으므로 left를 mid + 1로 옮겨야 한다.
+      - generic [ref=e27]:
+        - paragraph [ref=e28]: visualNotes
+        - list [ref=e29]:
+          - listitem [ref=e30]: left, mid, right가 이동하면서 살아남는 구간만 강조한다.
+          - listitem [ref=e31]: target과 nums[mid] 비교 결과에 따라 절반이 버려지는 흐름을 보여준다.
+    - complementary [ref=e32]:
+      - generic [ref=e33]:
+        - paragraph [ref=e34]: Learning Status
+        - heading "지금 해야 할 단계" [level=2] [ref=e35]
+        - paragraph [ref=e36]: 아직 레슨을 시작하지 않았습니다.
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - term [ref=e39]: currentStage
+            - definition [ref=e40]: blank
+          - generic [ref=e41]:
+            - term [ref=e42]: passedStages
+            - definition [ref=e43]: "[]"
+        - generic [ref=e44]:
+          - link "대표 레슨 시작" [ref=e45] [cursor=pointer]:
+            - /url: /algorithms/binary-search/lesson
+          - generic: 실전 문제는 레슨 완료 후 열림
+      - generic [ref=e46]:
+        - heading "정렬 배열에서 target 위치 찾기" [level=2] [ref=e47]
+        - paragraph [ref=e48]: 대표 파이썬 구현 1개를 기준으로 mid 계산, 비교, 범위 축소 순서를 고정한다.
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - term [ref=e51]: 언어
+            - definition [ref=e52]: python
+          - generic [ref=e53]:
+            - term [ref=e54]: 단계
+            - definition [ref=e55]: blank → parsons
+          - generic [ref=e56]:
+            - term [ref=e57]: 문제 식별자
+            - definition [ref=e58]: binary-search-demo-problem

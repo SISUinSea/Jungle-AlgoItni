@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "slug": "number-theory",
+    "title": "정수론",
+    "aliases": [
+      "number theory",
+      "gcd",
+      "lcm"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "math",
+      "gcd",
+      "prime"
+    ],
+    "summary": "유클리드 호제법을 중심으로 최대공약수, 최소공배수, 소수 판별 같은 기본 수론 도구를 묶어 익히는 단원"
+  },
+  "overview": "정수론 단원에서는 나눗셈의 나머지를 반복해 공약수를 빠르게 찾고, 그 결과를 다른 계산에 재사용하는 법을 익힌다.",
+  "coreIdea": "gcd(a, b)는 gcd(b, a % b)로 줄일 수 있고, LCM과 확장 유클리드도 이 재귀 구조를 기반으로 계산한다.",
+  "complexity": {
+    "time": "O(log min(a, b))",
+    "space": "O(log min(a, b))"
+  },
+  "commonMistake": {
+    "title": "a % b와 b의 위치를 뒤바꾸는 실수",
+    "whyWrong": "유클리드 호제법은 (b, a % b) 순서로 줄여야 동일한 최대공약수를 유지할 수 있다."
+  },
+  "visualNotes": [
+    "a, b, 나머지의 변화이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 a, b, 나머지의 변화을 갱신하는 시점을 강조한다."
+  ]
+}

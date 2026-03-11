@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "dynamic-programming",
+    "title": "DP",
+    "aliases": [
+      "dynamic programming",
+      "stairs"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "dp",
+      "bottom-up",
+      "recurrence"
+    ],
+    "summary": "작은 문제의 답을 저장해 점화식으로 큰 문제를 차례로 해결하는 동적 프로그래밍 단원"
+  },
+  "overview": "DP 단원에서는 부분 문제 정의, 초기값, 점화식, 계산 순서를 고정해 테이블을 채우는 사고방식을 익힌다.",
+  "coreIdea": "dp[i]를 i번째 계단까지 오르는 방법 수로 정의하고, dp[i] = dp[i - 1] + dp[i - 2]를 작은 값부터 계산한다.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "commonMistake": {
+    "title": "점화식부터 쓰고 초기값을 나중에 채우는 실수",
+    "whyWrong": "dp[1], dp[2]가 정해지지 않으면 이후 모든 값이 잘못 전파된다."
+  },
+  "visualNotes": [
+    "dp 테이블이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 dp 테이블을 갱신하는 시점을 강조한다."
+  ]
+}

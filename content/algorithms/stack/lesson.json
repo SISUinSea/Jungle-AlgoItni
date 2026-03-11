@@ -1,0 +1,82 @@
+{
+  "algorithmSlug": "stack",
+  "title": "스택으로 괄호 짝 검사하기",
+  "objective": "push, pop, 빈 스택 검사 세 동작만으로 올바른 괄호를 판별한다.",
+  "codeLanguage": "python",
+  "inputExample": "s = \"()(())\"",
+  "outputExample": "True",
+  "representativeCode": "def is_valid_parentheses(s):\n    stack = []\n\n    for char in s:\n        if char == \"(\":\n            stack.append(char)\n        else:\n            if not stack:\n                return False\n            stack.pop()\n\n    return not stack",
+  "traceSteps": [
+    {
+      "label": "문자 순회",
+      "explanation": "문자열을 왼쪽부터 한 글자씩 읽는다."
+    },
+    {
+      "label": "최근 상태 갱신",
+      "explanation": "여는 괄호는 스택에 넣고 닫는 괄호는 스택에서 꺼낸다."
+    },
+    {
+      "label": "최종 검증",
+      "explanation": "중간에 빈 스택에서 pop하면 실패, 끝났을 때 스택이 비어 있으면 성공이다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "스택 문제는 언제 push하고 언제 pop하는지 명확해야 한다.",
+    "template": "stack = []\n\nfor char in s:\n    if char == \"(\":\n        __BLANK_b1__\n    else:\n        __BLANK_b2__\n            return False\n        stack.pop()\n\n__BLANK_b3__",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "stack.append(char)",
+        "acceptedAnswers": [],
+        "hint": "여는 괄호를 스택에 저장한다."
+      },
+      {
+        "id": "b2",
+        "answer": "if not stack:",
+        "acceptedAnswers": [
+          "ifnotstack:"
+        ],
+        "hint": "닫는 괄호를 처리하기 전에 스택이 비었는지 확인한다."
+      },
+      {
+        "id": "b3",
+        "answer": "return not stack",
+        "acceptedAnswers": [
+          "returnnotstack"
+        ],
+        "hint": "끝났을 때 스택이 비어 있어야 올바른 괄호다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "push -> 빈 스택 검사 -> pop -> 최종 비었는지 확인 순서를 복원한다.",
+    "lines": [
+      "    stack = []",
+      "    for char in s:",
+      "        if char == \"(\":",
+      "            stack.append(char)",
+      "        else:",
+      "            if not stack:",
+      "                return False",
+      "            stack.pop()",
+      "    return not stack"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "닫는 괄호를 만났을 때 빈 스택 검사 없이 pop하는 실수",
+    "whyWrong": "이미 짝이 맞지 않는 입력인데도 예외가 나거나 잘못된 True 결과를 만들 수 있다."
+  },
+  "bridgeSummary": "실전 스택 문제도 대부분 '최근에 열린 상태를 지금 닫을 수 있는가'를 검사하는 구조로 바꿔 보면 단순해진다."
+}

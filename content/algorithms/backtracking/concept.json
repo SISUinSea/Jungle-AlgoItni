@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "backtracking",
+    "title": "백트래킹",
+    "aliases": [
+      "backtracking",
+      "combinations"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "backtracking",
+      "combination",
+      "dfs"
+    ],
+    "summary": "선택하고 내려갔다가 되돌리는 과정을 반복해 가능한 해를 체계적으로 생성하는 탐색 방식"
+  },
+  "overview": "백트래킹 단원에서는 현재 선택 상태를 들고 내려가며, 탐색이 끝나면 바로 직전 상태로 되돌아오는 흐름을 익힌다.",
+  "coreIdea": "현재 조합에 숫자를 하나 추가하고 재귀 호출한 뒤, 돌아오면 그 숫자를 다시 빼서 다음 후보를 시도한다.",
+  "complexity": {
+    "time": "O(C(n, k) * k)",
+    "space": "O(k)"
+  },
+  "commonMistake": {
+    "title": "append한 값을 pop하지 않고 다음 후보로 넘어가는 실수",
+    "whyWrong": "상태 복구가 빠지면 이전 선택이 다음 탐색에도 남아 잘못된 조합이 만들어진다."
+  },
+  "visualNotes": [
+    "현재 조합 current_combination이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 현재 조합 current_combination을 갱신하는 시점을 강조한다."
+  ]
+}

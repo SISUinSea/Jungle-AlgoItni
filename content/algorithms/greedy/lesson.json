@@ -1,0 +1,86 @@
+{
+  "algorithmSlug": "greedy",
+  "title": "종료 시간이 빠른 회의를 먼저 선택하기",
+  "objective": "정렬 기준과 선택 조건을 고정해 최대 회의 수를 놓치지 않는 그리디 흐름을 익힌다.",
+  "codeLanguage": "python",
+  "inputExample": "meetings = [(1, 4), (3, 5), (0, 6), (5, 7), (3, 8), (5, 9)]",
+  "outputExample": "2개\n[(1, 4), (5, 7)]",
+  "representativeCode": "def select_meetings(meetings):\n    if not meetings:\n        return 0, []\n\n    sorted_meetings = sorted(meetings, key=lambda meeting: (meeting[1], meeting[0]))\n    selected = [sorted_meetings[0]]\n    last_end_time = sorted_meetings[0][1]\n\n    for start, end in sorted_meetings[1:]:\n        if start >= last_end_time:\n            selected.append((start, end))\n            last_end_time = end\n\n    return len(selected), selected",
+  "traceSteps": [
+    {
+      "label": "빈 입력 처리",
+      "explanation": "회의가 없으면 바로 0개와 빈 목록을 반환한다."
+    },
+    {
+      "label": "기준 정렬",
+      "explanation": "종료 시간이 빠른 회의부터 정렬해 다음 선택 여지를 최대화한다."
+    },
+    {
+      "label": "가능한 회의만 선택",
+      "explanation": "현재 시작 시간이 마지막 종료 시간 이상인 회의만 고르고 기준 종료 시간을 갱신한다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "그리디는 어떤 기준으로 정렬하고 무엇을 비교해 선택할지 분명해야 한다.",
+    "template": "if not meetings:\n    return 0, []\n\n__BLANK_b1__\nselected = [sorted_meetings[0]]\nlast_end_time = sorted_meetings[0][1]\n\nfor start, end in sorted_meetings[1:]:\n    __BLANK_b2__\n        selected.append((start, end))\n        __BLANK_b3__\n\nreturn len(selected), selected",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "sorted_meetings = sorted(meetings, key=lambda meeting: (meeting[1], meeting[0]))",
+        "acceptedAnswers": [
+          "sorted_meetings=sorted(meetings,key=lambdameeting:(meeting[1],meeting[0]))"
+        ],
+        "hint": "종료 시간이 빠른 순서로 회의를 정렬한다."
+      },
+      {
+        "id": "b2",
+        "answer": "if start >= last_end_time:",
+        "acceptedAnswers": [
+          "ifstart>=last_end_time:"
+        ],
+        "hint": "이전 회의가 끝난 뒤 시작하는지 확인한다."
+      },
+      {
+        "id": "b3",
+        "answer": "last_end_time = end",
+        "acceptedAnswers": [
+          "last_end_time=end"
+        ],
+        "hint": "새로 선택한 회의의 종료 시간을 기준으로 갱신한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "정렬 -> 첫 회의 선택 -> 가능한 회의만 추가 순서를 복원한다.",
+    "lines": [
+      "    if not meetings:",
+      "        return 0, []",
+      "    sorted_meetings = sorted(meetings, key=lambda meeting: (meeting[1], meeting[0]))",
+      "    selected = [sorted_meetings[0]]",
+      "    last_end_time = sorted_meetings[0][1]",
+      "    for start, end in sorted_meetings[1:]:",
+      "        if start >= last_end_time:",
+      "            selected.append((start, end))",
+      "            last_end_time = end",
+      "    return len(selected), selected"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "시작 시간이 빠른 회의부터 고르는 실수",
+    "whyWrong": "그리디 기준이 잘못되면 이후에 더 많은 회의를 배정할 기회를 놓친다."
+  },
+  "bridgeSummary": "그리디 문제에서는 먼저 '이 선택이 다음 선택 가능성을 왜 가장 많이 남기는가'를 설명할 수 있어야 구현도 흔들리지 않는다."
+}

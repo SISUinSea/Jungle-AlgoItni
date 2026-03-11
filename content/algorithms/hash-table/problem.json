@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "hash-table",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "hash-table-demo-problem",
+  "title": "학생 성적 해시 테이블 관리",
+  "description": "학생 이름을 키로 하는 딕셔너리에서 평균, 최고 점수 학생, 개별 학생 점수를 관리한다.",
+  "inputFormat": "학생 이름을 키, 점수를 값으로 갖는 딕셔너리가 함수 인자로 주어진다.",
+  "outputFormat": "평균과 최고 점수 학생 정보를 반환하고, 개별 조회는 점수를 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "조회할 학생이 없는 경우",
+    "최고 점수가 마지막에 나오는 경우",
+    "점수가 모두 같은 경우"
+  ]
+}

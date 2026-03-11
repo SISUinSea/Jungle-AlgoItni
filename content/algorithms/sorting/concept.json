@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug": "sorting",
+    "title": "정렬",
+    "aliases": [
+      "sorting",
+      "insertion sort"
+    ],
+    "difficulty": "basic",
+    "tags": [
+      "sorting",
+      "insertion-sort",
+      "array"
+    ],
+    "summary": "정렬된 구간에 새 원소를 한 칸씩 끼워 넣으며 배열을 정리하는 기본 정렬 패턴"
+  },
+  "overview": "정렬 단원에서는 이미 정렬된 앞부분을 유지하면서 새 원소를 적절한 위치에 끼워 넣는 삽입 정렬의 흐름을 익힌다.",
+  "coreIdea": "현재 key보다 큰 값들을 오른쪽으로 한 칸씩 밀고, 빈 자리에 key를 끼워 넣는다.",
+  "complexity": {
+    "time": "O(n^2)",
+    "space": "O(1)"
+  },
+  "commonMistake": {
+    "title": "key를 따로 저장하지 않고 바로 덮어쓰는 실수",
+    "whyWrong": "이동 과정에서 현재 값이 사라지면 마지막에 어디에 넣어야 할지 잃어버린다."
+  },
+  "visualNotes": [
+    "정렬된 앞부분과 key 위치이 어떻게 바뀌는지 단계별로 표시한다.",
+    "대표 구현에서 정렬된 앞부분과 key 위치을 갱신하는 시점을 강조한다."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "algorithmSlug": "tree",
+  "problemSource": "internal-demo",
+  "problemIdOrUrl": "tree-demo-problem",
+  "title": "이진 트리 순회 결과 구하기",
+  "description": "이진 트리가 주어질 때 전위, 중위, 후위 순회 결과를 각각 구한다.",
+  "inputFormat": "트리 노드 구조가 함수 인자로 주어지거나 미리 생성된다.",
+  "outputFormat": "각 순회 결과를 리스트로 반환한다.",
+  "starterCode": "def solve():\n    pass\n\n\nif __name__ == \"__main__\":\n    solve()",
+  "knownEdgeCases": [
+    "루트만 있는 트리",
+    "한쪽으로만 치우친 트리",
+    "빈 자식이 많은 트리"
+  ]
+}

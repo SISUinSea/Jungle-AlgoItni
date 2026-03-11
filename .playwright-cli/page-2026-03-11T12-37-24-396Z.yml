@@ -1,0 +1,50 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "algoitni" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=e6]: 대표 구현 1개를 중심으로 학습 흐름을 고정하는 알고리즘 학습 MVP
+    - generic [ref=e7]: role 2 · lesson/ui
+  - generic [ref=e8]:
+    - link "홈" [ref=e9] [cursor=pointer]:
+      - /url: /
+    - text: /
+    - link "이진 탐색" [ref=e10] [cursor=pointer]:
+      - /url: /algorithms/binary-search
+    - text: / 실전 문제
+  - generic [ref=e11]:
+    - article [ref=e12]:
+      - paragraph [ref=e13]: internal-demo
+      - heading "정수 존재 여부 판별" [level=1] [ref=e14]
+      - paragraph [ref=e15]: 정렬된 배열과 여러 질의가 주어질 때, 각 질의 값이 배열에 존재하는지 이진 탐색으로 판단하는 문제를 가정한다.
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - paragraph [ref=e18]: 입력 형식
+          - paragraph [ref=e19]: 첫 줄에 배열 길이 N, 둘째 줄에 정렬된 정수 N개, 셋째 줄에 질의 수 M, 넷째 줄에 질의 M개가 주어진다.
+        - generic [ref=e20]:
+          - paragraph [ref=e21]: 출력 형식
+          - paragraph [ref=e22]: 각 질의 값이 존재하면 1, 없으면 0을 순서대로 출력한다.
+      - generic [ref=e23]:
+        - heading "starterCode" [level=2] [ref=e24]
+        - code [ref=e26]: def solve():\n pass\n\n\nif __name__ == "__main__":\n solve()
+    - complementary [ref=e27]:
+      - generic [ref=e28]:
+        - heading "Counterexample mount" [level=2] [ref=e29]
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - term [ref=e32]: POST endpoint
+            - definition [ref=e33]: /api/counterexample
+          - generic [ref=e34]:
+            - term [ref=e35]: problemIdOrUrl
+            - definition [ref=e36]: binary-search-demo-problem
+        - generic [ref=e37]:
+          - text: "request:"
+          - code [ref=e38]: "{ problemSource, problemIdOrUrl, userCode }"
+          - text: "response:"
+          - code [ref=e39]: "{ found, ... }"
+      - generic [ref=e40]:
+        - heading "knownEdgeCases" [level=2] [ref=e41]
+        - list [ref=e42]:
+          - listitem [ref=e43]: 배열 길이가 1이고 target이 존재하는 경우
+          - listitem [ref=e44]: 배열 길이가 1이고 target이 존재하지 않는 경우
+          - listitem [ref=e45]: target이 첫 번째 원소 또는 마지막 원소인 경우

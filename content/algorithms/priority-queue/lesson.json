@@ -1,0 +1,82 @@
+{
+  "algorithmSlug": "priority-queue",
+  "title": "우선순위 큐로 응급실 환자 처리하기",
+  "objective": "힙에 넣을 때와 꺼낼 때 어떤 값이 우선순위 기준인지 분명히 한다.",
+  "codeLanguage": "python",
+  "inputExample": "patients = [(\"김철수\", 3), (\"이영희\", 1), (\"박민수\", 2)]",
+  "outputExample": "['이영희', '박민수', '김철수']",
+  "representativeCode": "import heapq\n\n\ndef process_emergency_room(patients):\n    heap = []\n\n    for name, priority in patients:\n        heapq.heappush(heap, (priority, name))\n\n    processed = []\n\n    while heap:\n        priority, name = heapq.heappop(heap)\n        print(f\"처리: {name} (우선순위: {priority})\")\n        processed.append(name)\n\n    return processed",
+  "traceSteps": [
+    {
+      "label": "힙 초기화",
+      "explanation": "빈 리스트를 힙으로 사용해 우선순위 큐를 준비한다."
+    },
+    {
+      "label": "우선순위 적재",
+      "explanation": "환자 정보를 (priority, name) 형태로 넣어 가장 작은 priority가 먼저 오게 한다."
+    },
+    {
+      "label": "최고 우선순위 처리",
+      "explanation": "heappop으로 가장 시급한 환자를 꺼내 처리 순서에 기록한다."
+    }
+  ],
+  "blankExercise": {
+    "prompt": "우선순위 큐는 어떤 값을 힙의 기준으로 넣는지가 가장 중요하다.",
+    "template": "heap = []\n\nfor name, priority in patients:\n    __BLANK_b1__\n\nprocessed = []\n\nwhile heap:\n    __BLANK_b2__\n    print(f\"처리: {name} (우선순위: {priority})\")\n    __BLANK_b3__\n\nreturn processed",
+    "blanks": [
+      {
+        "id": "b1",
+        "answer": "heapq.heappush(heap, (priority, name))",
+        "acceptedAnswers": [
+          "heapq.heappush(heap,(priority,name))"
+        ],
+        "hint": "우선순위가 먼저 오도록 힙에 넣는다."
+      },
+      {
+        "id": "b2",
+        "answer": "priority, name = heapq.heappop(heap)",
+        "acceptedAnswers": [
+          "priority,name=heapq.heappop(heap)"
+        ],
+        "hint": "가장 높은 우선순위 환자를 꺼낸다."
+      },
+      {
+        "id": "b3",
+        "answer": "processed.append(name)",
+        "acceptedAnswers": [],
+        "hint": "처리 순서를 결과에 기록한다."
+      }
+    ]
+  },
+  "parsonsExercise": {
+    "prompt": "힙 적재 -> heappop -> 처리 기록 순서를 복원한다.",
+    "lines": [
+      "    heap = []",
+      "    for name, priority in patients:",
+      "        heapq.heappush(heap, (priority, name))",
+      "    processed = []",
+      "    while heap:",
+      "        priority, name = heapq.heappop(heap)",
+      "        print(f\"처리: {name} (우선순위: {priority})\")",
+      "        processed.append(name)",
+      "    return processed"
+    ],
+    "answerOrder": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "groupedIndices": []
+  },
+  "commonMistake": {
+    "title": "이름을 먼저 넣어 우선순위 대신 사전순으로 정렬되는 실수",
+    "whyWrong": "힙은 튜플의 첫 원소부터 비교하므로 우선순위 값이 맨 앞에 있어야 한다."
+  },
+  "bridgeSummary": "실전 문제에서 '가장 급한 것부터 뽑는다'가 보이면, 어떤 값을 heap의 첫 원소로 둘지부터 정하는 것이 좋다."
+}

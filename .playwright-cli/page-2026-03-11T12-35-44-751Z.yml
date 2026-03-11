@@ -1,0 +1,40 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "algoitni" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=e6]: 대표 구현 1개를 중심으로 학습 흐름을 고정하는 알고리즘 학습 MVP
+    - generic [ref=e7]: role 2 · lesson/ui
+  - generic [ref=e8]:
+    - paragraph [ref=e9]: Lesson Flow
+    - heading "개념 이해에서 대표 구현 학습, 그리고 실전 진입까지 한 흐름으로 이어집니다." [level=1] [ref=e10]
+    - paragraph [ref=e11]: "알고리즘마다 대표 파이썬 구현 1개만 기준으로 삼고, `빈칸 -> 파슨스`를 통과한 뒤에만 실전 문제로 넘어가도록 흐름을 고정합니다."
+    - generic [ref=e12]:
+      - generic [ref=e13]: deterministic grading
+      - generic [ref=e14]: localStorage progress
+      - generic [ref=e15]: one representative lesson
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: Algorithms
+        - heading "학습 가능한 알고리즘" [level=2] [ref=e20]
+      - generic [ref=e21]: "localStorage key: algostep_last_algorithm"
+    - article [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - heading "이진 탐색" [level=3] [ref=e26]
+          - paragraph [ref=e27]: 정렬된 배열에서 탐색 범위를 절반씩 줄여 target을 찾는 대표적인 탐색 알고리즘
+        - generic [ref=e28]: basic
+      - generic [ref=e29]:
+        - generic [ref=e30]: search
+        - generic [ref=e31]: array
+        - generic [ref=e32]: sorted
+      - generic [ref=e33]:
+        - paragraph [ref=e34]: 아직 레슨을 시작하지 않았습니다.
+        - paragraph [ref=e35]: 실전 문제는 레슨 완료 후 열립니다.
+      - generic [ref=e36]:
+        - link "개념" [ref=e37] [cursor=pointer]:
+          - /url: /algorithms/binary-search
+        - link "레슨" [ref=e38] [cursor=pointer]:
+          - /url: /algorithms/binary-search/lesson
+        - generic: 문제
