@@ -1,0 +1,8 @@
+body {
+  font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+}
+
+pre,
+code {
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}algoitni{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  </head>
+  <body class="min-h-screen bg-stone-950 text-stone-100">
+    <div class="mx-auto max-w-6xl px-6 py-8">
+      <header class="mb-10 flex items-center justify-between border-b border-white/10 pb-4">
+        <a href="{{ url_for('index') }}" class="text-2xl font-semibold tracking-tight text-amber-300">algoitni</a>
+        <div class="rounded-full border border-white/10 px-3 py-1 text-xs text-stone-300">
+          foundation/contracts
+        </div>
+      </header>
+      {% block content %}{% endblock %}
+    </div>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
