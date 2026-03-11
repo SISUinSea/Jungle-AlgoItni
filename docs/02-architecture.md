@@ -65,7 +65,6 @@ templates/
   lesson.html
   problem.html
 services/
-  llm_service.py
   content_service.py
   grading_service.py
   counterexample_service.py
@@ -109,7 +108,7 @@ docs/
 | `algorithmSlug` | `string` | 현재 학습 중인 알고리즘 | Yes |
 | `currentStage` | `"blank" \| "parsons" \| "problem"` | 현재 위치 | Yes |
 | `passedStages` | `string[]` | 통과한 단계 목록 | Yes |
-| `attempts` | `number` | 단계별 시도 횟수 | Yes |
+| `attempts` | `{ blank: number, parsons: number }` | 단계별 시도 횟수 | Yes |
 | `lessonCompleted` | `boolean` | 레슨 완료 여부 | Yes |
 
 경계 메모:
@@ -117,6 +116,7 @@ docs/
 - 알고리즘당 `lesson.json`은 정확히 1개만 둔다
 - `whiteboardExercise` 같은 자유 구현 스키마는 MVP 데이터 모델에서 제외한다
 - 레슨 합격 판정의 source of truth는 클라이언트 deterministic grader이며, 서버는 그 결과를 덮어쓰지 않는다
+- foundation 브랜치의 `/api/counterexample`은 경로와 입력 검증만 고정하고, 실제 탐색 로직은 후속 브랜치가 구현한다
 
 ## 5) 정합성 규칙
 

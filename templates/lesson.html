@@ -45,6 +45,13 @@
         <p class="text-sm font-medium text-white">Blank exercise mount</p>
         <p class="mt-2 text-sm leading-6 text-stone-300">{{ lesson.blankExercise.prompt }}</p>
         <pre class="mt-4 overflow-x-auto rounded-xl bg-stone-950/70 p-4 text-sm text-stone-100"><code>{{ lesson.blankExercise.template }}</code></pre>
+        <button
+          id="blank-pass-button"
+          type="button"
+          class="mt-4 rounded-full bg-amber-300 px-4 py-2 text-sm font-medium text-stone-950"
+        >
+          빈칸 단계 통과 저장
+        </button>
       </div>
       <div id="parsons-mount" class="rounded-2xl border border-white/10 bg-white/5 p-5">
         <p class="text-sm font-medium text-white">Parsons exercise mount</p>
@@ -54,6 +61,13 @@
           <li class="rounded-xl bg-stone-950/70 px-4 py-3">{{ line }}</li>
           {% endfor %}
         </ol>
+        <button
+          id="parsons-pass-button"
+          type="button"
+          class="mt-4 rounded-full border border-white/10 px-4 py-2 text-sm text-white"
+        >
+          파슨스 단계 통과 저장
+        </button>
       </div>
     </section>
 
@@ -81,6 +95,16 @@
           <dd id="progress-lesson-completed" class="mt-1 text-white">false</dd>
         </div>
       </dl>
+      <p id="progress-feedback" class="mt-4 text-sm leading-6 text-stone-300">
+        foundation/contracts 브랜치에서는 버튼으로 progress contract 저장만 검증합니다.
+      </p>
+      <button
+        id="progress-reset-button"
+        type="button"
+        class="mt-4 rounded-full border border-white/10 px-4 py-2 text-sm text-white"
+      >
+        진행 상태 초기화
+      </button>
     </section>
 
     <section class="rounded-3xl border border-white/10 bg-stone-900/70 p-6">
@@ -88,7 +112,9 @@
       <p class="mt-4 text-sm leading-6 text-stone-300">{{ lesson.bridgeSummary }}</p>
       <a
         id="problem-cta"
-        href="{{ url_for('problem_page', slug=algorithm.slug) }}"
+        data-problem-link
+        data-algorithm-slug="{{ algorithm.slug }}"
+        data-problem-url="{{ url_for('problem_page', slug=algorithm.slug) }}"
         data-problem-cta-disabled="true"
         class="mt-5 inline-flex rounded-full border border-white/10 px-4 py-2 text-sm text-stone-400"
         aria-disabled="true"

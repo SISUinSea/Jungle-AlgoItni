@@ -57,14 +57,14 @@
 
 ## Quick Start
 
-현재 저장소는 문서 우선 단계다. 아래 명령은 첫 구현 브랜치에서 따를 기준 실행 경로다.
+현재 저장소에는 foundation/contracts 스캐폴드가 포함되어 있다. 레슨 채점과 counterexample 파이프라인은 후속 브랜치에서 구현한다.
 
 ### 1) 로컬 실행
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install flask
+pip install -r requirements.txt
 flask --app app.py run --debug
 ```
 
@@ -85,6 +85,6 @@ python3 -m pytest
 
 ## Known Limitations
 
-- 현재 저장소는 구현 전 문서 세트만 있으며 실행 가능한 앱 코드는 아직 없다
+- 현재 저장소는 공통 계약 스캐폴드까지만 구현되어 있으며 레슨 채점과 counterexample 실행은 아직 없다
 - 알고리즘별 콘텐츠 수와 문제 세트는 초기 구현 브랜치에서 확정된다
 - 샌드박스 제한, validator 세부 구현, 반례 후보 확장 전략은 후속 기술 설계에서 고정한다
