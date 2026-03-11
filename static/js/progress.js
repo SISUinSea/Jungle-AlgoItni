@@ -90,15 +90,27 @@ function setLastAlgorithm(algorithmSlug) {
 
 function setLinkEnabled(link, enabled, enabledText) {
   if (!link) return;
+  const storedHref = link.dataset.href || link.getAttribute("href") || "";
+
   if (enabled) {
+    if (storedHref) {
+      link.dataset.href = storedHref;
+      link.setAttribute("href", storedHref);
+    }
     link.setAttribute("aria-disabled", "false");
+    link.removeAttribute("tabindex");
     link.classList.remove("text-stone-500", "text-stone-400");
     link.classList.add("text-white");
     if (enabledText) link.textContent = enabledText;
     return;
   }
 
+  if (storedHref) {
+    link.dataset.href = storedHref;
+  }
+  link.removeAttribute("href");
   link.setAttribute("aria-disabled", "true");
+  link.setAttribute("tabindex", "-1");
   link.classList.remove("text-white");
   link.classList.add("text-stone-500");
 }
@@ -147,7 +159,7 @@ function hydrateHomeProgress() {
   resumeCard.classList.remove("hidden");
   resumeCopy.textContent = `${lastAlgorithm} · ${describeProgress(lastState)}`;
   resumeLesson.href = `/algorithms/${lastAlgorithm}/lesson`;
-  resumeProblem.href = `/algorithms/${lastAlgorithm}/problem`;
+  resumeProblem.dataset.href = `/algorithms/${lastAlgorithm}/problem`;
   setLinkEnabled(resumeProblem, lastState.lessonCompleted, lastState.lessonCompleted ? "실전 문제" : "실전 문제 잠김");
 }
 
@@ -187,6 +199,7 @@ const progressApi = {
   markStagePassed,
   describeProgress,
   setLastAlgorithm,
+  setLinkEnabled,
 };
 
 if (typeof window !== "undefined") {

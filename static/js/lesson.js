@@ -36,20 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (attempts) attempts.textContent = String(progress.attempts);
     if (lessonCompleted) lessonCompleted.textContent = String(progress.lessonCompleted);
 
-    if (problemCta && progress.lessonCompleted) {
-      problemCta.dataset.problemCtaDisabled = "false";
-      problemCta.setAttribute("aria-disabled", "false");
-      problemCta.classList.remove("text-stone-400");
-      problemCta.classList.add("text-white", "border-emerald-300/30", "bg-emerald-300/10");
-      problemCta.textContent = "실전 문제로 이동";
-    }
-
-    if (problemCta && !progress.lessonCompleted) {
-      problemCta.dataset.problemCtaDisabled = "true";
-      problemCta.setAttribute("aria-disabled", "true");
-      problemCta.classList.remove("text-white", "border-emerald-300/30", "bg-emerald-300/10");
-      problemCta.classList.add("text-stone-400");
-      problemCta.textContent = "lessonCompleted === true 일 때만 활성화";
+    if (problemCta) {
+      problemCta.dataset.problemCtaDisabled = progress.lessonCompleted ? "false" : "true";
+      progressApi.setLinkEnabled(
+        problemCta,
+        progress.lessonCompleted,
+        progress.lessonCompleted ? "실전 문제로 이동" : "lessonCompleted === true 일 때만 활성화",
+      );
+      if (progress.lessonCompleted) {
+        problemCta.classList.add("border-emerald-300/30", "bg-emerald-300/10");
+      } else {
+        problemCta.classList.remove("border-emerald-300/30", "bg-emerald-300/10");
+      }
     }
 
     if (blankBadge) {
@@ -147,14 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
       accumulator[blank.id] = input?.value ?? "";
       return accumulator;
     }, {});
-  }
-
-  if (problemCta) {
-    problemCta.addEventListener("click", (event) => {
-      if (problemCta.getAttribute("aria-disabled") === "true") {
-        event.preventDefault();
-      }
-    });
   }
 
   if (blankSubmit) {
