@@ -12,7 +12,7 @@ test("normalizeProgressState promotes blank pass to parsons stage", () => {
   const state = normalizeProgressState({
     currentStage: "blank",
     passedStages: ["blank"],
-    attempts: 1,
+    attempts: { blank: 1, parsons: 0 },
     lessonCompleted: false,
   });
 
@@ -25,7 +25,7 @@ test("markStagePassed completes lesson after parsons", () => {
     {
       currentStage: "parsons",
       passedStages: ["blank"],
-      attempts: 2,
+      attempts: { blank: 2, parsons: 0 },
       lessonCompleted: false,
     },
     "parsons",
@@ -40,11 +40,11 @@ test("recordAttempt increments attempts", () => {
   const state = recordAttempt({
     currentStage: "blank",
     passedStages: [],
-    attempts: 0,
+    attempts: { blank: 0, parsons: 0 },
     lessonCompleted: false,
-  });
+  }, "blank");
 
-  assert.equal(state.attempts, 1);
+  assert.deepEqual(state.attempts, { blank: 1, parsons: 0 });
 });
 
 test("describeProgress reflects completion", () => {
@@ -52,7 +52,7 @@ test("describeProgress reflects completion", () => {
     describeProgress({
       currentStage: "problem",
       passedStages: ["blank", "parsons"],
-      attempts: 3,
+      attempts: { blank: 2, parsons: 1 },
       lessonCompleted: true,
     }),
     "레슨 완료. 실전 문제로 이동할 수 있습니다.",

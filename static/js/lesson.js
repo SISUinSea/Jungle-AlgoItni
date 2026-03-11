@@ -29,21 +29,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const parsonsBadge = document.getElementById("parsons-stage-badge");
   const parsonsLockedCopy = document.getElementById("parsons-locked-copy");
   const lessonSummary = document.getElementById("lesson-summary");
+  const blankPassButton = document.getElementById("blank-pass-button");
+  const parsonsPassButton = document.getElementById("parsons-pass-button");
+  const progressResetButton = document.getElementById("progress-reset-button");
+  const progressFeedback = document.getElementById("progress-feedback");
+
+  function setFeedback(message) {
+    if (progressFeedback) progressFeedback.textContent = message;
+  }
 
   function syncProgressPanel() {
     if (currentStage) currentStage.textContent = progress.currentStage;
     if (passedStages) passedStages.textContent = JSON.stringify(progress.passedStages);
-    if (attempts) attempts.textContent = String(progress.attempts);
+    if (attempts) attempts.textContent = JSON.stringify(progress.attempts);
     if (lessonCompleted) lessonCompleted.textContent = String(progress.lessonCompleted);
 
     if (problemCta) {
       problemCta.dataset.problemCtaDisabled = progress.lessonCompleted ? "false" : "true";
-      progressApi.setLinkEnabled(
-        problemCta,
-        progress.lessonCompleted,
-        progress.lessonCompleted ? "실전 문제로 이동" : "lessonCompleted === true 일 때만 활성화",
-      );
-      if (progress.lessonCompleted) {
+      const unlocked = progressApi.setProblemLinkState(problemCta, slug);
+      problemCta.textContent = unlocked
+        ? "실전 문제로 이동"
+        : "lessonCompleted === true 일 때만 활성화";
+      if (unlocked) {
         problemCta.classList.add("border-emerald-300/30", "bg-emerald-300/10");
       } else {
         problemCta.classList.remove("border-emerald-300/30", "bg-emerald-300/10");
@@ -63,6 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (lessonSummary) {
       lessonSummary.classList.toggle("hidden", !progress.lessonCompleted);
+    }
+
+    if (blankPassButton) {
+      blankPassButton.disabled = progress.passedStages.includes("blank");
+    }
+    if (parsonsPassButton) {
+      parsonsPassButton.disabled = !parsonsUnlocked || progress.lessonCompleted;
     }
   }
 
@@ -147,15 +161,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }, {});
   }
 
+  function markBlankPassed() {
+    const attempted = progressApi.recordAttempt(progress, "blank");
+    persistProgress(progressApi.markStagePassed(attempted, "blank"));
+  }
+
+  function markParsonsPassed() {
+    const attempted = progressApi.recordAttempt(progress, "parsons");
+    persistProgress(progressApi.markStagePassed(attempted, "parsons"));
+  }
+
   if (blankSubmit) {
     blankSubmit.addEventListener("click", () => {
-      persistProgress(progressApi.recordAttempt(progress));
+      persistProgress(progressApi.recordAttempt(progress, "blank"));
       const result = lessonCore.gradeBlankExercise(lesson.blankExercise, collectBlankAnswers());
       if (result.passed) {
         persistProgress(progressApi.markStagePassed(progress, "blank"));
         if (blankFeedback) {
           blankFeedback.textContent = "빈칸 단계를 통과했습니다. 이제 파슨스 단계를 진행할 수 있습니다.";
         }
+        setFeedback("빈칸 단계 통과 상태를 저장했습니다. 이제 파슨스 단계를 열 수 있습니다.");
         return;
       }
 
@@ -188,13 +213,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      persistProgress(progressApi.recordAttempt(progress));
+      persistProgress(progressApi.recordAttempt(progress, "parsons"));
       const result = lessonCore.gradeParsonsExercise(lesson.parsonsExercise, parsonsOrder);
       if (result.passed) {
         persistProgress(progressApi.markStagePassed(progress, "parsons"));
         if (parsonsFeedback) {
           parsonsFeedback.textContent = "파슨스 단계를 통과했습니다. 실전 문제로 이동할 수 있습니다.";
         }
+        setFeedback("파슨스 단계 통과 상태를 저장했습니다. 이제 실전 문제로 이동할 수 있습니다.");
         return;
       }
 
@@ -214,6 +240,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  if (blankPassButton) {
+    blankPassButton.addEventListener("click", () => {
+      markBlankPassed();
+      setFeedback("빈칸 단계 통과 상태를 저장했습니다. 이제 파슨스 단계를 열 수 있습니다.");
+    });
+  }
+
+  if (parsonsPassButton) {
+    parsonsPassButton.addEventListener("click", () => {
+      if (!progress.passedStages.includes("blank")) {
+        setFeedback("파슨스 단계 저장 전에는 빈칸 단계를 먼저 통과해야 합니다.");
+        syncProgressPanel();
+        return;
+      }
+      markParsonsPassed();
+      setFeedback("파슨스 단계 통과 상태를 저장했습니다. 이제 실전 문제로 이동할 수 있습니다.");
+    });
+  }
+
+  if (progressResetButton) {
+    progressResetButton.addEventListener("click", () => {
+      const resetProgress = progressApi.saveProgress(slug, progressApi.defaultProgressState);
+      progress = resetProgress;
+      syncProgressPanel();
+      renderParsonsList();
+      setFeedback("진행 상태를 초기화했습니다.");
+    });
+  }
+
+  progressApi.setLastAlgorithm(slug);
   renderBlankForm();
   syncProgressPanel();
   renderParsonsList();

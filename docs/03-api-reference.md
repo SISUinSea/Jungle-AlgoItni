@@ -55,11 +55,25 @@ Failure:
 }
 ```
 
+Foundation placeholder:
+
+```json
+{
+  "message": "Counterexample pipeline is not implemented in codex/foundation-contracts."
+}
+```
+
+상태 코드 규칙:
+
+- `400`: `problemSource`, `problemIdOrUrl`, `userCode` 중 필수 필드 누락
+- `404`: 문서에 등록되지 않은 `problemIdOrUrl`
+- `501`: foundation 브랜치에서 경로와 입력 검증만 고정한 상태
+
 ## 4) 브라우저 저장 계약
 
 | Key / Store | Shape | Source of Truth | 설명 |
 | --- | --- | --- | --- |
-| `algostep_progress::<algorithmSlug>` | `{ currentStage, passedStages, attempts, lessonCompleted }` | `localStorage` | 알고리즘별 현재 학습 상태 |
+| `algostep_progress::<algorithmSlug>` | `{ currentStage, passedStages, attempts: { blank, parsons }, lessonCompleted }` | `localStorage` | 알고리즘별 현재 학습 상태 |
 | `algostep_last_algorithm` | `string` | `localStorage` | 마지막으로 본 알고리즘 slug |
 
 | 출발 화면 | 도착 화면 | 전달 데이터 | 필요 조건 |
@@ -67,6 +81,12 @@ Failure:
 | `/` | `/algorithms/<slug>` | `algorithmSlug` | 선택한 알고리즘이 존재해야 한다 |
 | `/algorithms/<slug>` | `/algorithms/<slug>/lesson` | `algorithmSlug` | 개념 페이지 진입 성공 |
 | `/algorithms/<slug>/lesson` | `/algorithms/<slug>/problem` | `lessonCompleted` | `blank`, `parsons` 단계 통과 |
+
+브라우저 해금 규칙:
+
+- 홈 / 개념 / 레슨 화면의 실전 문제 링크는 `lessonCompleted === true` 전까지 `href` 없이 비활성 상태를 유지한다
+- 사용자가 `/algorithms/<slug>/problem`에 직접 진입해도 브라우저는 `localStorage`의 `lessonCompleted`를 확인하고 미완료 시 레슨 화면으로 되돌린다
+- foundation/contracts 단계의 레슨 화면은 `빈칸 단계 통과 저장`, `파슨스 단계 통과 저장` 버튼으로 `saveProgress(...)`를 호출해 progress contract를 실제로 갱신한다
 
 ## 5) 검증 규칙
 

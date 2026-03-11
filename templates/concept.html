@@ -61,33 +61,33 @@
       </dl>
       <div class="mt-6 flex flex-col gap-3">
         <a data-concept-lesson-link href="{{ url_for('lesson_page', slug=algorithm.slug) }}" class="rounded-full bg-amber-300 px-4 py-3 text-center text-sm font-medium text-stone-950">대표 레슨 시작</a>
-        <a data-concept-problem-link data-href="{{ url_for('problem_page', slug=algorithm.slug) }}" class="rounded-full border border-white/10 px-4 py-3 text-center text-sm text-stone-500" aria-disabled="true">실전 문제는 레슨 완료 후 열림</a>
+        <a data-concept-problem-link data-problem-link data-algorithm-slug="{{ algorithm.slug }}" data-problem-url="{{ url_for('problem_page', slug=algorithm.slug) }}" aria-disabled="true" class="rounded-full border border-white/10 px-4 py-3 text-center text-sm text-white">실전 문제는 레슨 완료 후 열림</a>
       </div>
     </section>
 
     <section class="rounded-[2rem] border border-white/10 bg-stone-900/70 p-6">
-    <h2 class="text-2xl font-semibold text-white">{{ lesson.title }}</h2>
-    <p class="mt-3 text-sm leading-6 text-stone-300">{{ lesson.objective }}</p>
-    <dl class="mt-6 space-y-4 text-sm">
-      <div>
-        <dt class="text-stone-400">언어</dt>
-        <dd class="mt-1 text-white">{{ lesson.codeLanguage }}</dd>
-      </div>
-      <div>
-        <dt class="text-stone-400">단계</dt>
-        <dd class="mt-1 text-white">blank → parsons</dd>
-      </div>
-      <div>
-        <dt class="text-stone-400">문제 식별자</dt>
-        <dd class="mt-1 text-white">{{ problem.problemIdOrUrl }}</dd>
-      </div>
-    </dl>
+      <h2 class="text-2xl font-semibold text-white">{{ lesson.title }}</h2>
+      <p class="mt-3 text-sm leading-6 text-stone-300">{{ lesson.objective }}</p>
+      <dl class="mt-6 space-y-4 text-sm">
+        <div>
+          <dt class="text-stone-400">언어</dt>
+          <dd class="mt-1 text-white">{{ lesson.codeLanguage }}</dd>
+        </div>
+        <div>
+          <dt class="text-stone-400">단계</dt>
+          <dd class="mt-1 text-white">blank → parsons</dd>
+        </div>
+        <div>
+          <dt class="text-stone-400">문제 식별자</dt>
+          <dd class="mt-1 text-white">{{ problem.problemIdOrUrl }}</dd>
+        </div>
+      </dl>
     </section>
   </aside>
 </section>
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/concept.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/progress.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/concept.js') }}" defer></script>
 {% endblock %}

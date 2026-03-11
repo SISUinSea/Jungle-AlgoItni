@@ -54,19 +54,32 @@ def create_app() -> Flask:
     @app.post("/api/counterexample")
     def counterexample_api():
         payload = request.get_json(silent=True) or {}
+        problem_source = payload.get("problemSource", "").strip()
         problem_id_or_url = payload.get("problemIdOrUrl", "").strip()
         user_code = payload.get("userCode", "").strip()
 
+        if not problem_source:
+            return jsonify({"message": "problemSource is required"}), 400
         if not problem_id_or_url:
-            return jsonify({"found": False, "message": "problemIdOrUrl is required"}), 400
+            return jsonify({"message": "problemIdOrUrl is required"}), 400
         if not user_code:
-            return jsonify({"found": False, "message": "userCode is required"}), 400
+            return jsonify({"message": "userCode is required"}), 400
 
-        bundle = content_service.find_bundle_by_problem_ref(problem_id_or_url)
+        bundle = content_service.find_bundle_by_problem_ref(problem_source, problem_id_or_url)
         if bundle is None:
-            return jsonify({"found": False, "message": "Unknown problemIdOrUrl"}), 404
+            return jsonify({"message": "Unknown problemIdOrUrl"}), 404
 
-        return jsonify({"found": False, "message": "Not implemented yet"})
+        return (
+            jsonify(
+                {
+                    "message": (
+                        "Counterexample pipeline is not implemented in "
+                        "codex/foundation-contracts."
+                    )
+                }
+            ),
+            501,
+        )
 
     return app
 

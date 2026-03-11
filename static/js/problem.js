@@ -7,15 +7,22 @@ function lessonPathFor(slug) {
 }
 
 function initializeProblemPage() {
-  const slug = window.location.pathname.split("/")[2];
+  const root = document.querySelector("[data-problem-root]");
+  const slug = root?.dataset.algorithmSlug || window.location.pathname.split("/")[2];
+  const lessonUrl = root?.dataset.lessonUrl || (slug ? lessonPathFor(slug) : "");
   if (!slug || !window.algoitniProgress) return;
 
   const progressApi = window.algoitniProgress;
   const progress = progressApi.loadProgress(slug);
   progressApi.setLastAlgorithm(slug);
 
-  if (!shouldAllowProblemAccess(progress)) {
-    window.location.replace(lessonPathFor(slug));
+  if (!progress.lessonCompleted && lessonUrl) {
+    window.location.replace(lessonUrl);
+    return;
+  }
+
+  if (!shouldAllowProblemAccess(progress) && lessonUrl) {
+    window.location.replace(lessonUrl);
   }
 }
 
