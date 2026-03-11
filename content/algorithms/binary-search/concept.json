@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "slug": "binary-search",
+    "title": "이진 탐색",
+    "aliases": ["binary search"],
+    "difficulty": "basic",
+    "tags": ["search", "array", "sorted"],
+    "summary": "정렬된 배열에서 탐색 범위를 절반씩 줄여 target을 찾는 대표적인 탐색 알고리즘"
+  },
+  "overview": "이진 탐색은 정렬된 배열에서 중간값을 기준으로 탐색 범위를 절반씩 줄이며 원하는 값을 찾는 알고리즘이다.",
+  "coreIdea": "mid를 계산하고, target이 mid보다 왼쪽에 있는지 오른쪽에 있는지 비교해서 살아남을 절반만 유지한다.",
+  "complexity": {
+    "time": "O(log n)",
+    "space": "O(1)"
+  },
+  "commonMistake": {
+    "title": "left와 right를 반대로 갱신하는 실수",
+    "whyWrong": "nums[mid] < target이면 target은 오른쪽에만 있을 수 있으므로 left를 mid + 1로 옮겨야 한다."
+  },
+  "visualNotes": [
+    "left, mid, right가 이동하면서 살아남는 구간만 강조한다.",
+    "target과 nums[mid] 비교 결과에 따라 절반이 버려지는 흐름을 보여준다."
+  ]
+}
