@@ -37,12 +37,16 @@ class ContentService:
             "problem": problem,
         }
 
-    def find_bundle_by_problem_ref(self, problem_ref: str) -> dict | None:
+    def find_bundle_by_problem_ref(self, problem_source: str, problem_ref: str) -> dict | None:
         for algorithm in self.list_algorithms():
             bundle = self.get_algorithm_bundle(algorithm["slug"])
             if bundle is None:
                 continue
-            if bundle["problem"].get("problemIdOrUrl") == problem_ref:
+            problem = bundle["problem"]
+            if (
+                problem.get("problemSource") == problem_source
+                and problem.get("problemIdOrUrl") == problem_ref
+            ):
                 return bundle
         return None
 

@@ -55,11 +55,25 @@ Failure:
 }
 ```
 
+Foundation placeholder:
+
+```json
+{
+  "message": "Counterexample pipeline is not implemented in codex/foundation-contracts."
+}
+```
+
+상태 코드 규칙:
+
+- `400`: `problemSource`, `problemIdOrUrl`, `userCode` 중 필수 필드 누락
+- `404`: 문서에 등록되지 않은 `problemIdOrUrl`
+- `501`: foundation 브랜치에서 경로와 입력 검증만 고정한 상태
+
 ## 4) 브라우저 저장 계약
 
 | Key / Store | Shape | Source of Truth | 설명 |
 | --- | --- | --- | --- |
-| `algostep_progress::<algorithmSlug>` | `{ currentStage, passedStages, attempts, lessonCompleted }` | `localStorage` | 알고리즘별 현재 학습 상태 |
+| `algostep_progress::<algorithmSlug>` | `{ currentStage, passedStages, attempts: { blank, parsons }, lessonCompleted }` | `localStorage` | 알고리즘별 현재 학습 상태 |
 | `algostep_last_algorithm` | `string` | `localStorage` | 마지막으로 본 알고리즘 slug |
 
 | 출발 화면 | 도착 화면 | 전달 데이터 | 필요 조건 |

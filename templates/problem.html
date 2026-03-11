@@ -66,6 +66,7 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="{{ url_for('static', filename='js/progress.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/problem.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/counterexample.js') }}" defer></script>
 {% endblock %}
