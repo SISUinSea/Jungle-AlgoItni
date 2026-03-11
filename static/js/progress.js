@@ -11,6 +11,7 @@ const defaultProgressState = {
   attempts: defaultAttempts,
   lessonCompleted: false,
 };
+const lockedProblemLinkClasses = ["pointer-events-none", "cursor-not-allowed", "opacity-60"];
 
 function normalizeAttempts(attempts) {
   if (!attempts || typeof attempts !== "object" || Array.isArray(attempts)) {
@@ -53,13 +54,48 @@ function saveProgress(algorithmSlug, nextState) {
   return state;
 }
 
+function isLessonCompleted(algorithmSlug) {
+  return loadProgress(algorithmSlug).lessonCompleted === true;
+}
+
+function setProblemLinkState(link, algorithmSlug) {
+  if (!link || !algorithmSlug) return false;
+
+  const isUnlocked = isLessonCompleted(algorithmSlug);
+  const problemUrl = link.dataset.problemUrl;
+
+  if (isUnlocked && problemUrl) {
+    link.setAttribute("href", problemUrl);
+    link.setAttribute("aria-disabled", "false");
+    link.dataset.problemLinkDisabled = "false";
+    link.classList.remove(...lockedProblemLinkClasses);
+  } else {
+    link.removeAttribute("href");
+    link.setAttribute("aria-disabled", "true");
+    link.dataset.problemLinkDisabled = "true";
+    link.classList.add(...lockedProblemLinkClasses);
+  }
+
+  return isUnlocked;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("[data-problem-link]").forEach((link) => {
+    const algorithmSlug = link.dataset.algorithmSlug;
+    setProblemLinkState(link, algorithmSlug);
+  });
+});
+
 window.algoitniProgress = {
   ALGOITNI_PROGRESS_PREFIX,
   ALGOITNI_LAST_ALGORITHM_KEY,
   defaultAttempts,
   defaultProgressState,
+  lockedProblemLinkClasses,
   normalizeAttempts,
   progressKey,
   loadProgress,
   saveProgress,
+  isLessonCompleted,
+  setProblemLinkState,
 };

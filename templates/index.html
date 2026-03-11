@@ -40,7 +40,15 @@
       <div class="mt-6 flex gap-3">
         <a href="{{ url_for('concept_page', slug=algorithm.slug) }}" class="rounded-full bg-amber-300 px-4 py-2 text-sm font-medium text-stone-950">개념</a>
         <a href="{{ url_for('lesson_page', slug=algorithm.slug) }}" class="rounded-full border border-white/10 px-4 py-2 text-sm text-white">레슨</a>
-        <a href="{{ url_for('problem_page', slug=algorithm.slug) }}" class="rounded-full border border-white/10 px-4 py-2 text-sm text-white">문제</a>
+        <a
+          data-problem-link
+          data-algorithm-slug="{{ algorithm.slug }}"
+          data-problem-url="{{ url_for('problem_page', slug=algorithm.slug) }}"
+          aria-disabled="true"
+          class="rounded-full border border-white/10 px-4 py-2 text-sm text-white"
+        >
+          문제
+        </a>
       </div>
     </article>
     {% endfor %}

@@ -15,16 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (currentStage) currentStage.textContent = progress.currentStage;
   if (passedStages) passedStages.textContent = JSON.stringify(progress.passedStages);
-  if (attempts) attempts.textContent = String(progress.attempts);
+  if (attempts) attempts.textContent = JSON.stringify(progress.attempts);
   if (lessonCompleted) lessonCompleted.textContent = String(progress.lessonCompleted);
 
   window.localStorage.setItem(window.algoitniProgress.ALGOITNI_LAST_ALGORITHM_KEY, slug);
 
   if (problemCta && progress.lessonCompleted) {
-    problemCta.dataset.problemCtaDisabled = "false";
-    problemCta.setAttribute("aria-disabled", "false");
-    problemCta.classList.remove("text-stone-400");
-    problemCta.classList.add("text-white");
+    window.algoitniProgress.setProblemLinkState(problemCta, slug);
     problemCta.textContent = "실전 문제로 이동";
   }
 });

@@ -88,7 +88,9 @@
       <p class="mt-4 text-sm leading-6 text-stone-300">{{ lesson.bridgeSummary }}</p>
       <a
         id="problem-cta"
-        href="{{ url_for('problem_page', slug=algorithm.slug) }}"
+        data-problem-link
+        data-algorithm-slug="{{ algorithm.slug }}"
+        data-problem-url="{{ url_for('problem_page', slug=algorithm.slug) }}"
         data-problem-cta-disabled="true"
         class="mt-5 inline-flex rounded-full border border-white/10 px-4 py-2 text-sm text-stone-400"
         aria-disabled="true"

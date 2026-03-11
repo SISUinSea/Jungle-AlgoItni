@@ -11,7 +11,12 @@
   <span class="text-white">실전 문제</span>
 </div>
 
-<section class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+<section
+  data-problem-root
+  data-algorithm-slug="{{ algorithm.slug }}"
+  data-lesson-url="{{ url_for('lesson_page', slug=algorithm.slug) }}"
+  class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]"
+>
   <article class="rounded-3xl border border-white/10 bg-white/5 p-8">
     <p class="text-sm uppercase tracking-[0.2em] text-amber-300">{{ problem.problemSource }}</p>
     <h1 class="mt-3 text-3xl font-semibold text-white">{{ problem.title }}</h1>

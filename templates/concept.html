@@ -63,7 +63,15 @@
     </dl>
     <div class="mt-8 flex flex-col gap-3">
       <a href="{{ url_for('lesson_page', slug=algorithm.slug) }}" class="rounded-full bg-amber-300 px-4 py-3 text-center text-sm font-medium text-stone-950">대표 레슨</a>
-      <a href="{{ url_for('problem_page', slug=algorithm.slug) }}" class="rounded-full border border-white/10 px-4 py-3 text-center text-sm text-white">실전 문제</a>
+      <a
+        data-problem-link
+        data-algorithm-slug="{{ algorithm.slug }}"
+        data-problem-url="{{ url_for('problem_page', slug=algorithm.slug) }}"
+        aria-disabled="true"
+        class="rounded-full border border-white/10 px-4 py-3 text-center text-sm text-white"
+      >
+        실전 문제
+      </a>
     </div>
   </aside>
 </section>

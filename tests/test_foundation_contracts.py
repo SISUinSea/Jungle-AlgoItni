@@ -84,6 +84,32 @@ def test_foundation_pages_render(client):
         assert response.status_code == 200
 
 
+def test_problem_links_are_locked_until_lesson_completion(client):
+    index_response = client.get("/")
+    concept_response = client.get("/algorithms/binary-search")
+    lesson_response = client.get("/algorithms/binary-search/lesson")
+
+    index_html = index_response.get_data(as_text=True)
+    concept_html = concept_response.get_data(as_text=True)
+    lesson_html = lesson_response.get_data(as_text=True)
+
+    assert 'data-problem-link' in index_html
+    assert 'data-problem-link' in concept_html
+    assert 'data-problem-link' in lesson_html
+
+    assert 'href="/algorithms/binary-search/problem"' not in index_html
+    assert 'href="/algorithms/binary-search/problem"' not in concept_html
+    assert 'href="/algorithms/binary-search/problem"' not in lesson_html
+
+
+def test_problem_page_contains_client_side_lesson_guard(client):
+    response = client.get("/algorithms/binary-search/problem")
+    html = response.get_data(as_text=True)
+
+    assert 'data-problem-root' in html
+    assert 'data-lesson-url="/algorithms/binary-search/lesson"' in html
+
+
 def test_missing_algorithm_returns_404(client):
     response = client.get("/algorithms/missing-slug")
     assert response.status_code == 404
@@ -154,9 +180,13 @@ def test_counterexample_returns_not_implemented_placeholder(client):
 
 def test_progress_contract_uses_stage_attempts():
     progress_js = (REPO_ROOT / "static" / "js" / "progress.js").read_text(encoding="utf-8")
+    problem_js = (REPO_ROOT / "static" / "js" / "problem.js").read_text(encoding="utf-8")
 
     assert 'const ALGOITNI_PROGRESS_PREFIX = "algostep_progress::";' in progress_js
     assert 'const ALGOITNI_LAST_ALGORITHM_KEY = "algostep_last_algorithm";' in progress_js
     assert "blank: 0" in progress_js
     assert "parsons: 0" in progress_js
     assert "normalizeAttempts" in progress_js
+    assert "setProblemLinkState" in progress_js
+    assert "window.location.replace(lessonUrl);" in problem_js
+    assert "!progress.lessonCompleted" in problem_js

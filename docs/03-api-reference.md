@@ -82,6 +82,11 @@ Foundation placeholder:
 | `/algorithms/<slug>` | `/algorithms/<slug>/lesson` | `algorithmSlug` | 개념 페이지 진입 성공 |
 | `/algorithms/<slug>/lesson` | `/algorithms/<slug>/problem` | `lessonCompleted` | `blank`, `parsons` 단계 통과 |
 
+브라우저 해금 규칙:
+
+- 홈 / 개념 / 레슨 화면의 실전 문제 링크는 `lessonCompleted === true` 전까지 `href` 없이 비활성 상태를 유지한다
+- 사용자가 `/algorithms/<slug>/problem`에 직접 진입해도 브라우저는 `localStorage`의 `lessonCompleted`를 확인하고 미완료 시 레슨 화면으로 되돌린다
+
 ## 5) 검증 규칙
 
 - `/api/counterexample`은 known edge case, reference solver, brute force를 우선하고 후보 입력 생성 보조는 선택적으로만 사용한다
