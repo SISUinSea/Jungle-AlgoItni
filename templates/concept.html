@@ -9,8 +9,8 @@
   <span class="text-white">{{ algorithm.title }}</span>
 </div>
 
-<section class="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
-  <article class="rounded-3xl border border-white/10 bg-white/5 p-8">
+<section data-concept-root data-algorithm-slug="{{ algorithm.slug }}" class="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+  <article class="rounded-[2rem] border border-white/10 bg-white/5 p-8">
     <p class="text-sm uppercase tracking-[0.2em] text-amber-300">{{ algorithm.slug }}</p>
     <h1 class="mt-3 text-4xl font-semibold text-white">{{ algorithm.title }}</h1>
     <p class="mt-5 text-sm leading-7 text-stone-300">{{ concept.overview }}</p>
@@ -44,35 +44,45 @@
     </div>
   </article>
 
-  <aside class="rounded-3xl border border-white/10 bg-stone-900/70 p-6">
-    <h2 class="text-2xl font-semibold text-white">{{ lesson.title }}</h2>
-    <p class="mt-3 text-sm leading-6 text-stone-300">{{ lesson.objective }}</p>
-    <dl class="mt-6 space-y-4 text-sm">
-      <div>
-        <dt class="text-stone-400">언어</dt>
-        <dd class="mt-1 text-white">{{ lesson.codeLanguage }}</dd>
+  <aside class="space-y-6">
+    <section class="rounded-[2rem] border border-white/10 bg-stone-900/70 p-6">
+      <p class="text-sm uppercase tracking-[0.2em] text-amber-300">Learning Status</p>
+      <h2 class="mt-2 text-2xl font-semibold text-white">지금 해야 할 단계</h2>
+      <p data-concept-stage-copy class="mt-3 text-sm leading-6 text-stone-300">개념 확인 후 대표 구현 레슨으로 이동하세요.</p>
+      <dl class="mt-6 grid gap-4 text-sm text-stone-300">
+        <div>
+          <dt class="text-stone-500">currentStage</dt>
+          <dd data-concept-current-stage class="mt-1 text-white">blank</dd>
+        </div>
+        <div>
+          <dt class="text-stone-500">passedStages</dt>
+          <dd data-concept-passed-stages class="mt-1 text-white">[]</dd>
+        </div>
+      </dl>
+      <div class="mt-6 flex flex-col gap-3">
+        <a data-concept-lesson-link href="{{ url_for('lesson_page', slug=algorithm.slug) }}" class="rounded-full bg-amber-300 px-4 py-3 text-center text-sm font-medium text-stone-950">대표 레슨 시작</a>
+        <a data-concept-problem-link data-problem-link data-algorithm-slug="{{ algorithm.slug }}" data-problem-url="{{ url_for('problem_page', slug=algorithm.slug) }}" aria-disabled="true" class="rounded-full border border-white/10 px-4 py-3 text-center text-sm text-white">실전 문제는 레슨 완료 후 열림</a>
       </div>
-      <div>
-        <dt class="text-stone-400">단계</dt>
-        <dd class="mt-1 text-white">blank → parsons</dd>
-      </div>
-      <div>
-        <dt class="text-stone-400">문제 식별자</dt>
-        <dd class="mt-1 text-white">{{ problem.problemIdOrUrl }}</dd>
-      </div>
-    </dl>
-    <div class="mt-8 flex flex-col gap-3">
-      <a href="{{ url_for('lesson_page', slug=algorithm.slug) }}" class="rounded-full bg-amber-300 px-4 py-3 text-center text-sm font-medium text-stone-950">대표 레슨</a>
-      <a
-        data-problem-link
-        data-algorithm-slug="{{ algorithm.slug }}"
-        data-problem-url="{{ url_for('problem_page', slug=algorithm.slug) }}"
-        aria-disabled="true"
-        class="rounded-full border border-white/10 px-4 py-3 text-center text-sm text-white"
-      >
-        실전 문제
-      </a>
-    </div>
+    </section>
+
+    <section class="rounded-[2rem] border border-white/10 bg-stone-900/70 p-6">
+      <h2 class="text-2xl font-semibold text-white">{{ lesson.title }}</h2>
+      <p class="mt-3 text-sm leading-6 text-stone-300">{{ lesson.objective }}</p>
+      <dl class="mt-6 space-y-4 text-sm">
+        <div>
+          <dt class="text-stone-400">언어</dt>
+          <dd class="mt-1 text-white">{{ lesson.codeLanguage }}</dd>
+        </div>
+        <div>
+          <dt class="text-stone-400">단계</dt>
+          <dd class="mt-1 text-white">blank → parsons</dd>
+        </div>
+        <div>
+          <dt class="text-stone-400">문제 식별자</dt>
+          <dd class="mt-1 text-white">{{ problem.problemIdOrUrl }}</dd>
+        </div>
+      </dl>
+    </section>
   </aside>
 </section>
 {% endblock %}
