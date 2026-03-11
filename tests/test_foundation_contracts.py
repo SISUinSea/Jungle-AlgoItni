@@ -100,6 +100,9 @@ def test_problem_links_are_locked_until_lesson_completion(client):
     assert 'href="/algorithms/binary-search/problem"' not in index_html
     assert 'href="/algorithms/binary-search/problem"' not in concept_html
     assert 'href="/algorithms/binary-search/problem"' not in lesson_html
+    assert 'id="blank-pass-button"' in lesson_html
+    assert 'id="parsons-pass-button"' in lesson_html
+    assert 'id="progress-reset-button"' in lesson_html
 
 
 def test_problem_page_contains_client_side_lesson_guard(client):
@@ -181,6 +184,7 @@ def test_counterexample_returns_not_implemented_placeholder(client):
 def test_progress_contract_uses_stage_attempts():
     progress_js = (REPO_ROOT / "static" / "js" / "progress.js").read_text(encoding="utf-8")
     problem_js = (REPO_ROOT / "static" / "js" / "problem.js").read_text(encoding="utf-8")
+    lesson_js = (REPO_ROOT / "static" / "js" / "lesson.js").read_text(encoding="utf-8")
 
     assert 'const ALGOITNI_PROGRESS_PREFIX = "algostep_progress::";' in progress_js
     assert 'const ALGOITNI_LAST_ALGORITHM_KEY = "algostep_last_algorithm";' in progress_js
@@ -190,3 +194,7 @@ def test_progress_contract_uses_stage_attempts():
     assert "setProblemLinkState" in progress_js
     assert "window.location.replace(lessonUrl);" in problem_js
     assert "!progress.lessonCompleted" in problem_js
+    assert "saveProgress(slug" in lesson_js
+    assert 'currentStage: "parsons"' in lesson_js
+    assert 'currentStage: "problem"' in lesson_js
+    assert "lessonCompleted: true" in lesson_js

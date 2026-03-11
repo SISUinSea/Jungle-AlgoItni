@@ -11,6 +11,8 @@ const defaultProgressState = {
   attempts: defaultAttempts,
   lessonCompleted: false,
 };
+const activeProblemLinkClasses = ["text-white"];
+const inactiveProblemLinkClasses = ["text-stone-400"];
 const lockedProblemLinkClasses = ["pointer-events-none", "cursor-not-allowed", "opacity-60"];
 
 function normalizeAttempts(attempts) {
@@ -69,11 +71,15 @@ function setProblemLinkState(link, algorithmSlug) {
     link.setAttribute("aria-disabled", "false");
     link.dataset.problemLinkDisabled = "false";
     link.classList.remove(...lockedProblemLinkClasses);
+    link.classList.remove(...inactiveProblemLinkClasses);
+    link.classList.add(...activeProblemLinkClasses);
   } else {
     link.removeAttribute("href");
     link.setAttribute("aria-disabled", "true");
     link.dataset.problemLinkDisabled = "true";
     link.classList.add(...lockedProblemLinkClasses);
+    link.classList.remove(...activeProblemLinkClasses);
+    link.classList.add(...inactiveProblemLinkClasses);
   }
 
   return isUnlocked;
@@ -91,6 +97,8 @@ window.algoitniProgress = {
   ALGOITNI_LAST_ALGORITHM_KEY,
   defaultAttempts,
   defaultProgressState,
+  activeProblemLinkClasses,
+  inactiveProblemLinkClasses,
   lockedProblemLinkClasses,
   normalizeAttempts,
   progressKey,

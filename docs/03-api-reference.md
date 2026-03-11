@@ -86,6 +86,7 @@ Foundation placeholder:
 
 - 홈 / 개념 / 레슨 화면의 실전 문제 링크는 `lessonCompleted === true` 전까지 `href` 없이 비활성 상태를 유지한다
 - 사용자가 `/algorithms/<slug>/problem`에 직접 진입해도 브라우저는 `localStorage`의 `lessonCompleted`를 확인하고 미완료 시 레슨 화면으로 되돌린다
+- foundation/contracts 단계의 레슨 화면은 `빈칸 단계 통과 저장`, `파슨스 단계 통과 저장` 버튼으로 `saveProgress(...)`를 호출해 progress contract를 실제로 갱신한다
 
 ## 5) 검증 규칙
 
